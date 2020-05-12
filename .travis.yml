@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - "3.8"
+
+#env:
+#  - DJANGO=2.2.12
+#  - postgresql=12.2
+
+install:
+  - pip install -r requirements.txt
+
+#before_script:
+#  - python manage.py makemigrations
+#  - python manage.py migrate
+
+script:
+#  - python manage.py test
+  - flake8 ./ --max-line-length=130 --exclude=migrations --max-complexity 10
