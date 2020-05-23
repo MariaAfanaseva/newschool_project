@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Intensive course German",
+    "short_desc": "This is the best German language course.",
+    "description": "You can learn the language and pass the exam.",
+    "teacher": "Angela, Lena",
+    "price": 500,
+    "start_date": "2020-06-01 09:00:00",
+    "duration": 30,
+    "address": "Marienplatz"
+  },
+    {
+    "name": "Intensive course English",
+    "short_desc": "This is the best English language course.",
+    "description": "You can learn the language and pass the exam.",
+    "teacher": "Mark",
+    "price": 400,
+    "start_date": "2020-06-15 09:00:00",
+    "duration": 30,
+    "address": "Facebook Way"
+  },
+    {
+    "name": "Intensive course Italian",
+    "short_desc": "This is the best Italian language course.",
+    "description": "You can learn the language and pass the exam.",
+    "teacher": "Domenico",
+    "price": 300,
+    "start_date": "2020-06-20 09:00:00",
+    "duration": 30,
+    "address": "Via Borromei"
+  }
+]

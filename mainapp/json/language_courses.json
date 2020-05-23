@@ -1,0 +1,23 @@
+[
+  {
+    "course": "Intensive course German",
+    "language": "German",
+    "level_letter": "B",
+    "level_number": 1.1,
+    "book": "Netzwerk B1, Netzwerk B1.1 Arbeitsbuch"
+  },
+   {
+    "course": "Intensive course English",
+    "language": "English",
+    "level_letter": "B",
+    "level_number": 1.2,
+    "book": "Great! B1"
+  },
+   {
+    "course": "Intensive course Italian",
+    "language": "Italian",
+    "level_letter": "B",
+    "level_number": "1.1",
+    "book": "Con piacere B1"
+  }
+]
