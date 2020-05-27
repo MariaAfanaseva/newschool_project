@@ -1,0 +1,109 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load tags %}
+{% block content %}
+<!-- PageBanner -->
+	<div class="container-fluid page-banner event-grid event-list no-padding">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Courses List</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>Language courses</li>
+							<li class="active">{{current_language.name}}</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+
+	<!-- Event List -->
+	<div class="container-fluid eventlist upcoming-event latest-blog no-padding">
+		<div class="section-padding"></div>
+		<div class="container">
+			<div class="section-header">
+				<h3>Our {{current_language.name}} courses</h3>
+				<span>Current courses</span>
+			</div>
+			<div class="event-categories">
+				<div class="event-select-option">
+					<select class="selectpicker" title="Choose one of the following...">
+						<option data-icon="icon-Folder">Sort Events By Field</option>
+						<option data-icon="icon-Files">Event 1</option>
+						<option data-icon="icon-Floppy">Event 2</option>
+						<option data-icon="icon-File">Event 3</option>
+					</select>
+				</div>
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-User">Popular Speakers</option>
+						<option data-icon="icon-Users">Speakers 1</option>
+						<option data-icon="icon-User">Speakers 2</option>
+						<option data-icon="icon-Users">Speakers 3</option>
+					</select>
+				</div>
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-Tag">Event Category</option>
+						<option data-icon="icon-Tag">Category 1</option>
+						<option data-icon="icon-Tag">Category 2</option>
+						<option data-icon="icon-Tag">Category 3</option>
+					</select>
+				</div>
+				<a href="#" title="Filter">Filter</a>
+			</div>
+			<div class="row">
+				<div class="col-md-9 col-sm-6 col-xs-6 content-area">
+					{% for lang_course in language_courses %}
+						<article class="type-post">
+							<div class="entry-cover">
+								<!--eventsingle-page.html-->
+								<a href="#"><img src="{% static 'images/history4.jpg' %}" alt="history" width="310" height="246"/></a>
+							</div>
+							<div class="entry-block">
+								<div class="entry-title">
+									<!--eventsingle-page.html-->
+									<a href="#"><h3>{{lang_course.course.name}}</h3></a>
+								</div>
+								<div class="entry-meta">
+									<div class="post-date">
+										<p>{{lang_course.course.start_date | str_month }}<span>
+											{{lang_course.course.start_date.day}}</span></p>
+									</div>
+									<div class="post-metablock">
+										<div class="post-time">
+											<span>{{lang_course.course.start_date}}</span>
+										</div>
+										<div class="post-location">
+											<span>{{lang_course.course.address.country}},
+											{{lang_course.course.address.street}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="entry-content">
+									<p>{{lang_course.course.short_desc}}</p>
+								</div>
+								<!--eventsingle-page.html-->
+								<a href="#" class="learn-more" title="Learn More">Learn More</a>
+							</div>
+						</article>
+                    {% endfor %}
+					<!-- Ow Pagination -->
+					<div class="ow-pagination">
+						<nav>
+							<ul class="pager">
+								<li class="page-prv"><a href="#" title="Previous"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous Event</a></li>
+								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
+								<li class="page-next"><a href="#" title="Next">Next Event<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</nav>
+					</div><!-- Ow Pagination /- -->
+				</div>
+			</div>
+		</div>
+		<div class="section-padding"></div>
+	</div><!-- Event List /- -->
+{% endblock %}

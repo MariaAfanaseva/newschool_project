@@ -19,5 +19,12 @@
     "level_letter": "B",
     "level_number": "1.1",
     "book": "Con piacere B1"
+  },
+   {
+    "course": "English course for IT",
+    "language": "English",
+    "level_letter": "С",
+    "level_number": 1.1,
+    "book": "Great! С1"
   }
 ]

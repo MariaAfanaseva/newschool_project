@@ -2,7 +2,7 @@ import json
 import os
 from django.core.management.base import BaseCommand
 from mainapp.models import (Teachers, Addresses, Books,
-                            Courses, LanguageCourses)
+                            Courses, LanguageCourses, Languages)
 
 
 JSON_PATH = 'mainapp/json'
@@ -38,16 +38,24 @@ def save_books():
         new_book.save()
 
 
+def save_languages():
+    languages = load_from_json('languages')
+    Languages.objects.all().delete()
+    for lang in languages:
+        new_language = Languages(**lang)
+        new_language.save()
+
+
 def save_courses():
     courses = load_from_json('courses')
     Courses.objects.all().delete()
     for course in courses:
-        street = course["address"]
+        street = course['address']
         _address = Addresses.objects.get(street=street)
         course['address'] = _address
 
         # get all teachers
-        teacher_names = course["teacher"].split(', ')
+        teacher_names = course['teacher'].split(', ')
         teachers = []
         for teacher in teacher_names:
             get_teacher = Teachers.objects.get(name=teacher)
@@ -68,12 +76,16 @@ def save_language_courses():
         course['course'] = _get_course
 
         # get all books
-        book_names = course["book"].split(', ')
+        book_names = course['book'].split(', ')
         books = []
         for book in book_names:
             get_book = Books.objects.get(name=book)
             books.append(get_book)
         course.pop('book')
+
+        language = course['language']
+        _language = Languages.objects.get(name=language)
+        course['language'] = _language
 
         new_lang_course = LanguageCourses(**course)
         new_lang_course.save()
@@ -85,5 +97,6 @@ class Command(BaseCommand):
         save_teachers()
         save_addresses()
         save_books()
+        save_languages()
         save_courses()
         save_language_courses()

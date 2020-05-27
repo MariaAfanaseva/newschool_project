@@ -52,9 +52,18 @@ class Books(models.Model):
         return f'{self.name}'
 
 
+class Languages(models.Model):
+    name = models.CharField(verbose_name='language name', max_length=128)
+    description = models.TextField(verbose_name='language description')
+    is_active = models.BooleanField(verbose_name='active', default=True, db_index=True)
+
+    def __str__(self):
+        return self.name
+
+
 class LanguageCourses(models.Model):
     course = models.OneToOneField(Courses, primary_key=True, on_delete=models.CASCADE)
-    language = models.CharField(verbose_name='language', max_length=128)
+    language = models.ForeignKey(Languages, models.CASCADE, verbose_name='language')
     level_letter = models.CharField(verbose_name='language level letter', max_length=1)
     level_number = models.FloatField(verbose_name='language level number', max_length=3)
     book = models.ManyToManyField(Books, verbose_name='book')
