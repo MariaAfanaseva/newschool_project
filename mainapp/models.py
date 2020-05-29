@@ -10,7 +10,7 @@ class Teachers(models.Model):
     photo = models.ImageField(upload_to='teacher photo', blank=True)
 
     def __str__(self):
-        return f'{self.name}, {self.surname}'
+        return f'{self.name} {self.surname}'
 
 
 class Addresses(models.Model):
@@ -34,6 +34,7 @@ class Courses(models.Model):
     price = models.DecimalField(verbose_name='course price', max_digits=8, decimal_places=2, default=0)
     teacher = models.ManyToManyField(Teachers, verbose_name='teacher', blank=True)
     start_date = models.DateTimeField(verbose_name='course start date', null=True)
+    finish_date = models.DateTimeField(verbose_name='course finish date', null=True)
     duration = models.PositiveIntegerField(verbose_name='course duration', default=1)
     address = models.ForeignKey(Addresses, models.SET_NULL,
                                 blank=True, null=True,

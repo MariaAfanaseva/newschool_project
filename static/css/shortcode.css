@@ -3724,7 +3724,7 @@
 	.eventlist.upcoming-event.latest-blog .post-time,
 	.eventlist.upcoming-event.latest-blog .post-location {
 		font-size: 12px;
-		padding-left: 2px
+		padding-left: 2px;
 	}
 	
 	/* -- EventSingle:: Schedule */

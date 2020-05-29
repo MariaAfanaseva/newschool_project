@@ -31,42 +31,39 @@
 			<div class="event-categories">
 				<div class="event-select-option">
 					<select class="selectpicker" title="Choose one of the following...">
-						<option data-icon="icon-Folder">Sort Events By Field</option>
-						<option data-icon="icon-Files">Event 1</option>
-						<option data-icon="icon-Floppy">Event 2</option>
-						<option data-icon="icon-File">Event 3</option>
+						<option data-icon="icon-Tag">Level</option>
+						<option>A</option>
+						<option>B</option>
+						<option>C</option>
 					</select>
 				</div>
 				<div class="event-select-option">
 					<select class="selectpicker">
-						<option data-icon="icon-User">Popular Speakers</option>
-						<option data-icon="icon-Users">Speakers 1</option>
-						<option data-icon="icon-User">Speakers 2</option>
-						<option data-icon="icon-Users">Speakers 3</option>
+						<option data-icon="icon-Tag">Number level</option>
+						<option>1.1</option>
+						<option>1.2</option>
 					</select>
 				</div>
 				<div class="event-select-option">
 					<select class="selectpicker">
-						<option data-icon="icon-Tag">Event Category</option>
-						<option data-icon="icon-Tag">Category 1</option>
-						<option data-icon="icon-Tag">Category 2</option>
-						<option data-icon="icon-Tag">Category 3</option>
+						<option data-icon="icon-WorldWide">Location</option>
+						<option>German</option>
+						<option>Italy</option>
+						<option>USA</option>
 					</select>
 				</div>
-				<a href="#" title="Filter">Filter</a>
+				<a href="#">Filter</a>
 			</div>
 			<div class="row">
 				<div class="col-md-9 col-sm-6 col-xs-6 content-area">
 					{% for lang_course in language_courses %}
 						<article class="type-post">
 							<div class="entry-cover">
-								<!--eventsingle-page.html-->
-								<a href="#"><img src="{% static 'images/history4.jpg' %}" alt="history" width="310" height="246"/></a>
+								<a href="{% url 'main:language_course' lang_course.pk %}"><img src="{% static 'images/default_img.jpg' %}" alt="history" width="310" height="246"/></a>
 							</div>
 							<div class="entry-block">
 								<div class="entry-title">
-									<!--eventsingle-page.html-->
-									<a href="#"><h3>{{lang_course.course.name}}</h3></a>
+									<a href="{% url 'main:language_course' lang_course.pk %}"><h3>{{lang_course.course.name}}</h3></a>
 								</div>
 								<div class="entry-meta">
 									<div class="post-date">
@@ -75,8 +72,8 @@
 									</div>
 									<div class="post-metablock">
 										<div class="post-time">
-											<span>{{lang_course.course.start_date}}</span>
-										</div>
+											<span>{{lang_course.course.start_date|date:"d.M"}} - {{lang_course.course.finish_date|date:"d.M"}}, {{lang_course.course.start_date.time|time:"g:i a"}} - {{lang_course.course.finish_date|time:"g:i a"}}</span>
+									    </div>
 										<div class="post-location">
 											<span>{{lang_course.course.address.country}},
 											{{lang_course.course.address.street}}</span>
@@ -86,8 +83,7 @@
 								<div class="entry-content">
 									<p>{{lang_course.course.short_desc}}</p>
 								</div>
-								<!--eventsingle-page.html-->
-								<a href="#" class="learn-more" title="Learn More">Learn More</a>
+								<a href="{% url 'main:language_course' lang_course.pk %}" class="learn-more">Learn More</a>
 							</div>
 						</article>
                     {% endfor %}
@@ -95,9 +91,9 @@
 					<div class="ow-pagination">
 						<nav>
 							<ul class="pager">
-								<li class="page-prv"><a href="#" title="Previous"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous Event</a></li>
+								<li class="page-prv"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous courses</a></li>
 								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
-								<li class="page-next"><a href="#" title="Next">Next Event<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+								<li class="page-next"><a href="#">Next courses<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
 							</ul>
 						</nav>
 					</div><!-- Ow Pagination /- -->

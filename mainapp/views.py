@@ -1,10 +1,10 @@
 import datetime
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView
-from mainapp.models import LanguageCourses, Languages
+from django.views.generic import ListView, DetailView
+from mainapp.models import (LanguageCourses, Languages)
 
 
-class IndexDetailView(ListView):
+class IndexListView(ListView):
     model = Languages
     template_name = 'mainapp/index.html'
     context_object_name = 'languages'
@@ -24,5 +24,16 @@ class LanguageCoursesListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['current_language'] = self.current_language
+        context['languages'] = Languages.objects.all()
+        return context
+
+
+class LanguageCourseDetailView(DetailView):
+    model = LanguageCourses
+    template_name = 'mainapp/language_course_single.html'
+    context_object_name = 'lang_course'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['languages'] = Languages.objects.all()
         return context
