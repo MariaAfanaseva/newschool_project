@@ -1,0 +1,94 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<!-- PageBanner -->
+	<div class="container-fluid page-banner blog no-padding">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Teachers list</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li class="active">Teachers</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+
+	<!-- Blog News -->
+	<div class="container-fluid eventlist blog upcoming-event latest-blog no-padding">
+		<div class="section-padding"></div>
+		<div class="container">
+            <div class="section-header">
+				<h3>Our teaches</h3>
+			</div>
+			<div class="event-categories">
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-Tag">Level</option>
+						<option>A</option>
+						<option>B</option>
+						<option>C</option>
+					</select>
+				</div>
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-Tag">Number level</option>
+						<option>1.1</option>
+						<option>1.2</option>
+					</select>
+				</div>
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-WorldWide">Location</option>
+						<option>German</option>
+						<option>Italy</option>
+						<option>USA</option>
+					</select>
+				</div>
+				<a href="#">Filter</a>
+			</div>
+			<div class="row">
+				<div class="col-md-9 col-sm-6 col-xs-6 content-area">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-6 blog-box">
+
+                            {% for teacher in teachers %}
+                                <article class="type-post">
+                                    <div class="entry-cover">
+                                        <a href="#"><img src="{{MEDIA_URL}}{{teacher.photo}}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
+                                    </div>
+                                    <div class="entry-block">
+										<div class="entry-meta"></div>
+                                        <div class="entry-title">
+                                            <a href="#"><h3>{{teacher.name}} {{teacher.surname}}</h3></a>
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>{{teacher.introduction}}</p>
+                                        </div>
+                                        <a href="#" class="learn-more">Learn More</a>
+                                    </div>
+                                </article>
+                            {% endfor %}
+						</div>
+					</div>
+
+					<!-- Ow Pagination -->
+					<div class="ow-pagination">
+						<nav>
+							<ul class="pager">
+								<li class="page-prv"><a href="#" title="Previous"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous Event</a></li>
+								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
+								<li class="page-next"><a href="#" title="Next">Next Event<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</nav>
+					</div><!-- Ow Pagination /- -->
+                </div>
+            </div>
+        </div>
+    <div class="section-padding"></div>
+</div><!-- Latest News /- -->
+{% endblock %}
