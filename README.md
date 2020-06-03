@@ -2,6 +2,6 @@
 Django project (PostgreSQL, Docker)
 
 Start project: docker-compose up
-Stop project: CTRL+C and then docker-compose down 
+Stop project: docker-compose down 
 
-Start in env: python manage.py runserver 0.0.0.0:8000
+Start in env: python manage.py runserver

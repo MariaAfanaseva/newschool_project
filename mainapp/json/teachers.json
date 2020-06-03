@@ -5,6 +5,7 @@
     "dob": "1984-05-14",
     "education": "Harvard University",
     "introduction": "I am very happy to teach here.",
+    "about_teacher": "Mark Elliot Zuckerberg is an American internet entrepreneur and philanthropist. He is known for co-founding Facebook, Inc. and serves as its chairman, chief executive officer, and controlling shareholder. He also is a co-founder of the solar sail spacecraft development project Breakthrough Starshot and serves as one of its board members.",
     "photo": "teacher_photos/mark_zuckerberg.jpg"
   },
     {
@@ -13,6 +14,7 @@
     "dob": "1954-07-17",
     "education": "Ruprecht-Karls-Universität Heidelberg",
     "introduction": "Ich bin sehr glücklich, hier zu unterrichten.",
+    "about_teacher": "Angela Dorothea Merkel ist eine deutsche Politikerin (CDU). Sie ist seit dem 22. November 2005 Bundeskanzlerin der Bundesrepublik Deutschland. Vom 10. April 2000 bis zum 7. Dezember 2018 war sie CDU-Bundesvorsitzende.",
     "photo": "teacher_photos/angela_merkel.jpg"
   },
     {
@@ -21,14 +23,16 @@
     "dob": "1958-08-13",
     "education": "Istituto Marangoni",
     "introduction": "Sono molto felice di insegnare qui.",
+    "about_teacher": "Domenico Mario Assunto Dolce is an Italian fashion designer and entrepreneur. Along with Stefano Gabbana, he is one half of the luxury fashion house Dolce & Gabbana (D&G). Since founding D&G in 1985, Dolce has become one of the world's most influential fashion designers and an industry icon.",
     "photo": "teacher_photos/domenico_dolce.jpg"
   },
   {
     "name": "Lena",
     "surname": "Meyer-Landrut",
     "dob": "1991-05-23",
-    "education": "IGS Roderbruch Hannover,",
+    "education": "IGS Roderbruch Hannover",
     "introduction": "I am very happy to teach here.",
+    "about_teacher": "Lena Johanna Therese Meyer-Landrut ist eine deutsche Sängerin, Songwriterin und gelegentliches Model. Mit dem Lied Satellite gewann sie am 29. Mai 2010 den Eurovision Song Contest und errang damit den zweiten Sieg für Deutschland bei diesem Wettbewerb. Im Jahr 2011 trat sie mit dem Lied Taken by a Stranger erneut an und erreichte dabei den zehnten Rang. Seit der Veröffentlichung ihres ersten Albums tritt sie als Lena auf.",
     "photo": "teacher_photos/lena_meyer_landrut.jpg"
   }
 ]

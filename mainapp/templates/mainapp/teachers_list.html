@@ -59,17 +59,17 @@
                             {% for teacher in teachers %}
                                 <article class="type-post">
                                     <div class="entry-cover">
-                                        <a href="#"><img src="{{MEDIA_URL}}{{teacher.photo}}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
+                                        <a href="{% url 'main:teacher' teacher.pk %}"><img src="{{MEDIA_URL}}{{teacher.photo}}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
                                     </div>
                                     <div class="entry-block">
 										<div class="entry-meta"></div>
                                         <div class="entry-title">
-                                            <a href="#"><h3>{{teacher.name}} {{teacher.surname}}</h3></a>
+                                            <a href="{% url 'main:teacher' teacher.pk %}"><h3>{{teacher.name}} {{teacher.surname}}</h3></a>
                                         </div>
                                         <div class="entry-content">
                                             <p>{{teacher.introduction}}</p>
                                         </div>
-                                        <a href="#" class="learn-more">Learn More</a>
+                                        <a href="{% url 'main:teacher' teacher.pk %}" class="learn-more">Learn More</a>
                                     </div>
                                 </article>
                             {% endfor %}
@@ -90,5 +90,5 @@
             </div>
         </div>
     <div class="section-padding"></div>
-</div><!-- Latest News /- -->
+	</div>
 {% endblock %}

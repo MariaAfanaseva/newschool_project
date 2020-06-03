@@ -1,7 +1,7 @@
 from django.urls import path
 from mainapp.views import (LanguageCoursesListView,
                            IndexListView, LanguageCourseDetailView,
-                           TeachersListView)
+                           TeachersListView, TeacherListView)
 
 app_name = 'mainapp'
 
@@ -13,4 +13,6 @@ urlpatterns = [
          name='language_course'),
     path('teachers/', TeachersListView.as_view(),
          name='teachers'),
+    path('teacher/<int:pk>/', TeacherListView.as_view(),
+         name='teacher'),
 ]

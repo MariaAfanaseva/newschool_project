@@ -2,7 +2,11 @@ import datetime
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from mainapp.models import (LanguageCourses, Languages,
-                            Teachers)
+                            Teachers, Courses)
+
+
+def get_languages():
+    return Languages.objects.all()
 
 
 class IndexListView(ListView):
@@ -25,7 +29,8 @@ class LanguageCoursesListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['current_language'] = self.current_language
-        context['languages'] = Languages.objects.all()
+        context['languages'] = get_languages()
+        context['title'] = 'Language courses'
         return context
 
 
@@ -36,7 +41,8 @@ class LanguageCourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['languages'] = Languages.objects.all()
+        context['languages'] = get_languages()
+        context['title'] = 'Language course'
         return context
 
 
@@ -47,5 +53,24 @@ class TeachersListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['languages'] = Languages.objects.all()
+        context['languages'] = get_languages()
+        context['title'] = 'Teachers'
+        return context
+
+
+class TeacherListView(ListView):
+    template_name = 'mainapp/teacher_single.html'
+    context_object_name = 'teacher_courses'
+
+    def get_queryset(self):
+        teacher_pk = self.kwargs['pk']
+        self.teacher = get_object_or_404(Teachers, pk=teacher_pk)
+        return Courses.objects.filter(teacher=teacher_pk).\
+            filter(start_date__gte=datetime.datetime.now())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['languages'] = get_languages()
+        context['title'] = 'Teacher'
+        context['teacher'] = self.teacher
         return context

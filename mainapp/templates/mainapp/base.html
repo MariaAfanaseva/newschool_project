@@ -12,7 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<title>Home - New School</title>
+	<title>
+        {% block title %}
+            {{ title}}
+        {% endblock %}
+    </title>
 	<!-- For iPhone 4 Retina display: -->
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-icon-114x114.png' %}">
 
@@ -117,11 +121,9 @@
 								<li class="{% if request.resolver_match.view_name == 'main:index'%}active
 								           {% else %}{% endif %}">
                                     <a href="{% url 'main:index' %}">Home</a></li>
-								<!--<li><a title="About Us" href="about-page.html">About Us</a></li>-->
-								<!--<li><a title="Services" href="services-page.html">Services</a></li>-->
 								<li class="{% if request.resolver_match.view_name == 'main:language_courses' or request.resolver_match.view_name == 'main:language_course'%}active dropdown
 								           {% else %}dropdown{% endif %}">
-									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" href="#">Language courses</a>
+									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle">Language courses</a>
 									<i class="ddl-switch fa fa-angle-down"></i>
 									<ul class="dropdown-menu">
                                         {% for language in languages %}
@@ -129,16 +131,9 @@
                                         {% endfor %}
 									</ul>
 								</li>
-								<li class="dropdown">
+								<li class="{% if request.resolver_match.view_name == 'main:teachers' or request.resolver_match.view_name == 'main:teacher'%}active dropdown
+								           {% else %}dropdown{% endif %}">
 									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" href="{% url 'main:teachers' %}">Teachers</a>
-								</li>
-                                <li class="dropdown">
-									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" href="#">Latest News</a>
-									<i class="ddl-switch fa fa-angle-down"></i>
-									<ul class="dropdown-menu">
-										<li><a title="Blog" href="#">Blog</a></li>
-										<li><a title="Blog Post" href="#">Blog Post</a></li>
-									</ul>
 								</li>
 								<li><a href="#">Contact Us</a></li>
 							</ul>
