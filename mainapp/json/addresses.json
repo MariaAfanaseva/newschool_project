@@ -1,0 +1,27 @@
+[
+  {
+    "country": "Germany",
+    "city": "München",
+    "street": "Marienplatz",
+    "house_number": 11,
+    "floor": 2,
+    "room_number": 125,
+    "google_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2662.603726596438!2d11.574494115400245!3d48.13716495916903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e758b1faf3117%3A0x2818454b3e326876!2sMarienplatz%2011%2C%2080331%20M%C3%BCnchen!5e0!3m2!1sru!2sde!4v1590087758871!5m2!1sru!2sde"
+  },
+  {
+    "country": "USA",
+    "city": "San Francisco",
+    "street": "Facebook Way",
+    "house_number": 8,
+    "floor": 2,
+    "room_number": 1,
+    "google_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d791.5401562293251!2d-122.15357131187875!3d37.48053576297946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbddcd9b30fe9%3A0xaafb7ce56e19bc76!2sFacebook%20marketplace!5e0!3m2!1sru!2sde!4v1590658153237!5m2!1sru!2sde"
+  },
+    {
+    "country": "Italy",
+    "city": "Milan",
+    "street": "Via Borromei",
+    "house_number": 25,
+    "google_map": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d699.5712061214459!2d9.181446629227612!3d45.46406603928633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1536c98c041%3A0x2fd6417cd02a2830!2sIl%20Vaso%20di%20Pandora!5e0!3m2!1sru!2sde!4v1590089845978!5m2!1sru!2sde"
+    }
+]

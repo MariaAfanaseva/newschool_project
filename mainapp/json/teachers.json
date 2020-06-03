@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Mark",
+    "surname": "Zuckerberg",
+    "dob": "1984-05-14",
+    "education": "Harvard University",
+    "introduction": "I am very happy to teach here.",
+    "photo": "teacher_photos/mark_zuckerberg.jpg"
+  },
+    {
+    "name": "Angela",
+    "surname": "Merkel",
+    "dob": "1954-07-17",
+    "education": "Ruprecht-Karls-Universität Heidelberg",
+    "introduction": "Ich bin sehr glücklich, hier zu unterrichten.",
+    "photo": "teacher_photos/angela_merkel.jpg"
+  },
+    {
+    "name": "Domenico",
+    "surname": "Dolce",
+    "dob": "1958-08-13",
+    "education": "Istituto Marangoni",
+    "introduction": "Sono molto felice di insegnare qui.",
+    "photo": "teacher_photos/domenico_dolce.jpg"
+  },
+  {
+    "name": "Lena",
+    "surname": "Meyer-Landrut",
+    "dob": "1991-05-23",
+    "education": "IGS Roderbruch Hannover,",
+    "introduction": "I am very happy to teach here.",
+    "photo": "teacher_photos/lena_meyer_landrut.jpg"
+  }
+]

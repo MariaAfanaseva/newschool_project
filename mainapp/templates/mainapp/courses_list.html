@@ -1,0 +1,105 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load tags %}
+{% block content %}
+<!-- PageBanner -->
+	<div class="container-fluid page-banner event-grid event-list no-padding">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Courses List</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>Language courses</li>
+							<li class="active">{{current_language.name}}</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+
+	<!-- Event List -->
+	<div class="container-fluid eventlist upcoming-event latest-blog no-padding">
+		<div class="section-padding"></div>
+		<div class="container">
+			<div class="section-header">
+				<h3>Our {{current_language.name}} courses</h3>
+				<span>Current courses</span>
+			</div>
+			<div class="event-categories">
+				<div class="event-select-option">
+					<select class="selectpicker" title="Choose one of the following...">
+						<option data-icon="icon-Tag">Level</option>
+						<option>A</option>
+						<option>B</option>
+						<option>C</option>
+					</select>
+				</div>
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-Tag">Number level</option>
+						<option>1.1</option>
+						<option>1.2</option>
+					</select>
+				</div>
+				<div class="event-select-option">
+					<select class="selectpicker">
+						<option data-icon="icon-WorldWide">Location</option>
+						<option>German</option>
+						<option>Italy</option>
+						<option>USA</option>
+					</select>
+				</div>
+				<a href="#">Filter</a>
+			</div>
+			<div class="row">
+				<div class="col-md-9 col-sm-6 col-xs-6 content-area">
+					{% for lang_course in language_courses %}
+						<article class="type-post">
+							<div class="entry-cover">
+								<a href="{% url 'main:language_course' lang_course.pk %}"><img src="{% static 'images/default_img.jpg' %}" alt="history" width="310" height="246"/></a>
+							</div>
+							<div class="entry-block">
+								<div class="entry-title">
+									<a href="{% url 'main:language_course' lang_course.pk %}"><h3>{{lang_course.course.name}}</h3></a>
+								</div>
+								<div class="entry-meta">
+									<div class="post-date">
+										<p>{{lang_course.course.start_date | str_month }}<span>
+											{{lang_course.course.start_date.day}}</span></p>
+									</div>
+									<div class="post-metablock">
+										<div class="post-time">
+											<span>{{lang_course.course.start_date|date:"d.M"}} - {{lang_course.course.finish_date|date:"d.M"}}, {{lang_course.course.start_date.time|time:"g:i a"}} - {{lang_course.course.finish_date|time:"g:i a"}}</span>
+									    </div>
+										<div class="post-location">
+											<span>{{lang_course.course.address.country}},
+											{{lang_course.course.address.street}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="entry-content">
+									<p>{{lang_course.course.short_desc}}</p>
+								</div>
+								<a href="{% url 'main:language_course' lang_course.pk %}" class="learn-more">Learn More</a>
+							</div>
+						</article>
+                    {% endfor %}
+					<!-- Ow Pagination -->
+					<div class="ow-pagination">
+						<nav>
+							<ul class="pager">
+								<li class="page-prv"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous courses</a></li>
+								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
+								<li class="page-next"><a href="#">Next courses<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</nav>
+					</div><!-- Ow Pagination /- -->
+				</div>
+			</div>
+		</div>
+		<div class="section-padding"></div>
+	</div><!-- Event List /- -->
+{% endblock %}
