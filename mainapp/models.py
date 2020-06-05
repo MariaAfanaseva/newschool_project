@@ -8,7 +8,7 @@ class Teachers(models.Model):
     education = models.CharField(verbose_name='teacher education', max_length=255, blank=True)
     introduction = models.TextField(verbose_name='teacher introduction text', blank=True)
     about_teacher = models.TextField(verbose_name='about teacher', blank=True)
-    photo = models.ImageField(upload_to='teacher photo', blank=True)
+    photo = models.ImageField(verbose_name='teacher photo', blank=True)
 
     def __str__(self):
         return f'{self.name} {self.surname}'
@@ -40,6 +40,7 @@ class Courses(models.Model):
     address = models.ForeignKey(Addresses, models.SET_NULL,
                                 blank=True, null=True,
                                 verbose_name='course address')
+    image = models.ImageField(verbose_name='course image', blank=True)
 
     def __str__(self):
         return f'{self.name}'

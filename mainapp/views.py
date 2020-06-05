@@ -10,9 +10,18 @@ def get_languages():
 
 
 class IndexListView(ListView):
-    model = Languages
     template_name = 'mainapp/index.html'
-    context_object_name = 'languages'
+    context_object_name = 'current_courses'
+
+    def get_queryset(self):
+        return Courses.objects.filter(
+            start_date__gte=datetime.datetime.now()).order_by("?")[:4]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Home'
+        context['languages'] = get_languages()
+        return context
 
 
 class LanguageCoursesListView(ListView):
