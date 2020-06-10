@@ -4,9 +4,12 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, password):
+    def create_user(self, email, name, password=None):
         if not email:
             raise ValueError('The Email must be set.')
+
+        if not password:
+            raise ValueError('The password must be set.')
 
         user = self.model(
             email=self.normalize_email(email), name=name,
@@ -15,7 +18,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)  # Default database in settings
         return user
 
-    def create_superuser(self, email, name, password):
+    def create_superuser(self, email, name, password=None):
         user = self.create_user(
             email=email,
             name=name,
