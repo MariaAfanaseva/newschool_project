@@ -1,6 +1,6 @@
 function add_class_icon(){
     const classes = {
-        // 'id_name_icon':['zmdi-account', 'material-icons-name'],
+        'id_name_icon':['zmdi-account', 'material-icons-name'],
         'id_email_icon':['zmdi-email'],
         'id_password1_icon':['zmdi-lock'],
         'id_password2_icon': ['zmdi-lock-outline']
