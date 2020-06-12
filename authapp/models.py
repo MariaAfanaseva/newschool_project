@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
+from django.utils.timezone import now, timedelta
+
+
+def get_verification_key_time():
+    return now() + timedelta(hours=24)
 
 
 class UserManager(BaseUserManager):
@@ -36,7 +41,7 @@ class User(AbstractBaseUser):
         unique=True,
     )
     name = models.CharField(verbose_name='Name', max_length=128)
-    is_active = models.BooleanField(verbose_name='Active user', default=True)
+    is_active = models.BooleanField(verbose_name='Active user', default=False)
     is_admin = models.BooleanField(verbose_name='Admin', default=False)
 
     objects = UserManager()
@@ -50,3 +55,16 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin  # All admins are staff
+
+
+class UserVerify(models.Model):
+    """ Model for verify by email """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    verification_key = models.CharField(max_length=128, blank=True)
+    verification_key_expires = models.DateTimeField(default=get_verification_key_time)
+
+    def is_verification_key_valid(self):
+        if now() <= self.verification_key_expires:
+            return True
+        else:
+            return False

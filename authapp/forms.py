@@ -1,6 +1,8 @@
+import hashlib
+import random
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from authapp.models import User
+from authapp.models import User, UserVerify
 
 
 class UserRegisterForm(forms.ModelForm):
@@ -38,6 +40,13 @@ class UserRegisterForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
+
+        #  Verification by email
+        user_verify = UserVerify()
+        user_verify.user = user
+        salt = hashlib.sha1(str(random.random()).encode('utf8')).hexdigest()[:6]
+        user_verify.verification_key = hashlib.sha1((user.email + salt).encode('utf8')).hexdigest()
+        user_verify.save()
         return user
 
 
