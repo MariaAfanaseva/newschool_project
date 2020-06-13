@@ -8,7 +8,8 @@
     "start_date": "2020-07-01 09:00:00",
     "finish_date": "2020-08-01 13:00:00",
     "duration": 30,
-    "address": "Marienplatz"
+    "address": "Marienplatz",
+    "image": "course_photos/german_course.jpg"
   },
     {
     "name": "Intensive course English",
@@ -19,7 +20,8 @@
     "start_date": "2020-06-15 09:00:00",
     "finish_date": "2020-07-16 12:00:00",
     "duration": 30,
-    "address": "Facebook Way"
+    "address": "Facebook Way",
+    "image": "course_photos/english_course.jpg"
   },
     {
     "name": "Intensive course Italian",
@@ -30,7 +32,8 @@
     "start_date": "2020-06-20 09:00:00",
     "finish_date": "2020-07-21 14:00:00",
     "duration": 30,
-    "address": "Via Borromei"
+    "address": "Via Borromei",
+    "image": "course_photos/italian_course.jpg"
   },
   {
     "name": "English course for IT",
@@ -41,6 +44,7 @@
     "start_date": "2020-07-27 09:00:00",
     "finish_date": "2020-08-28 13:30:00",
     "duration": 30,
-    "address": "Facebook Way"
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
   }
 ]

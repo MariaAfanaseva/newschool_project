@@ -20,7 +20,7 @@
 		<div class="section-padding"></div>
 	</div><!-- PageBanner /- -->
 	
-	<!-- Event List -->
+	<!-- Course -->
 	<div class="container-fluid eventsingle eventlist upcoming-event latest-blog our-history no-padding">
 		<div class="section-padding"></div>
 		<div class="container">
@@ -43,6 +43,8 @@
 									<div class="post-time">
 										<span class="icon icon-Notes"></span>
 										<span>{{lang_course.course.start_date|date:"d N Y"}} - {{lang_course.course.finish_date|date:"d N Y"}}</span>
+									</div>
+									<div class="post-time">
 										<span class="icon icon-Time"></span>
 										<span>{{lang_course.course.start_date.time|time:"g:i a"}} - {{lang_course.course.finish_date|time:"g:i a"}}</span>
 									</div>
@@ -51,22 +53,17 @@
 										<span>Level - {{lang_course.level_letter}}{{lang_course.level_number}}</span>
 									</div>
 									<div class="post-location">
-											<span class="icon icon-User"></span>
-											<span>Teacher - {% for teacher in lang_course.course.teacher.all %}
-												<a href="{% url 'main:index' %}">{{teacher}}</a>{% endfor %}
-											</span>
+										<span class="icon icon-User"></span>
+										<span>
+											Teacher - {% for teacher in lang_course.course.teacher.all %}
+											<a href="{% url 'main:teacher' teacher.pk %}">{{teacher}}</a>{% endfor %}
+										</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-Pointer"></span>
 										<span>{{lang_course.course.address}}</span>
 									</div>
 								</div>
-								<ul>
-									<li class="fb"><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li class="twt"><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li class="lnk"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li class="gp"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								</ul>								
 							</div>
 							<div class="entry-content">
 								<p>{{lang_course.course.description}}</p>
@@ -135,5 +132,5 @@
 			</div>
 		</div>
 		<div class="section-padding"></div>
-	</div><!-- Event List /- -->
+	</div>
 {% endblock %}

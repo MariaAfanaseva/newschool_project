@@ -3,3 +3,4 @@
 conf/
 *.yml
 migrations/
+media/

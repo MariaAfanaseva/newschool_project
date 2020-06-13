@@ -5,75 +5,32 @@
 	<div id="slider-section" class="slider-section container-fluid no-padding">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="{% static 'images/slider1.jpg' %}" alt="slide1" width="1920" height="770"/>
-					<div class="carousel-caption">
-						<div class="container">
-							<div class="col-md-5 col-sm-6 col-xs-9 pull-right">
-								<div class="slider-content-box">
-									<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
-										<h3 class="slider-title">Beats all you've ever saw been in trouble with the law</h3>
-										<span>January 03-07</span>
-										<p>09, Design Street, New York, NY- 10001, United States </p>
-									</div>
-									<div class="slider-author col-md-12 col-sm-12 col-xs-6 no-padding">
-										<img src="{% static 'images/slider-thumb1.jpg' %}" alt="slider-thumb" width="74" height="74"/>
-										<h3>Daniel Lesner<span>Public Speaker</span></h3>
-									</div>
-									<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
-										<a href="#" title="Register now">Register Now</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="{% static 'images/slider2.jpg' %}" alt="slide2" width="1920" height="770"/>
-					<div class="carousel-caption">
-						<div class="container">
-							<div class="col-md-5 col-sm-6 col-xs-9 pull-right">
-								<div class="slider-content-box">
-									<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
-										<h3 class="slider-title">International Academic Business Conference Orlando</h3>
-										<span>January 15-19</span>
-										<p>09, Design Street, New York, NY- 10001, United States</p>
-									</div>
-									<div class="slider-author col-md-12 col-sm-12 col-xs-6 no-padding">
-										<img src="{% static 'images/slider-thumb2.jpg' %}" alt="slider-thumb" width="74" height="74"/>
-										<h3>Dwayne Johnson<span>Business Speaker</span></h3>
-									</div>
-									<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
-										<a href="#" title="Register now">Register Now</a>
+				{% for course in current_courses %}
+					<div class="{% if forloop.counter == 1 %}item active
+								{% else %}item
+								{% endif %}">
+						<img src="{{MEDIA_URL}}{{course.image}}" alt="slide2" width="1920" height="770"/>
+						<div class="carousel-caption">
+							<div class="container">
+								<div class="col-md-5 col-sm-6 col-xs-9 pull-right">
+									<div class="slider-content-box">
+										<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
+											<h3 class="slider-title">{{course}}</h3>
+											<span>{{course.start_date|date:"d N y"}} - {{course.finish_date|date:"d N y"}}</span>
+											<p>{{course.address}}</p>
+											{% for teacher in course.teacher.all %}
+												<p>{{teacher}}</p>
+											{% endfor %}
+										</div>
+										<div class="col-md-12 col-sm-12 col-xs-6 no-padding section-padding">
+											<a href="{% url 'main:language_course' course.pk %}">Show course</a>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="item">
-					<img src="{% static 'images/slider3.jpg' %}" alt="slide3" width="1920" height="770"/>
-					<div class="carousel-caption">
-						<div class="container">
-							<div class="col-md-5 col-sm-6 col-xs-9 pull-right">
-								<div class="slider-content-box">
-									<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
-										<h3 class="slider-title">Well the first thing you know ol' Jeds a millionaire</h3>
-										<span>January 27-30</span>
-										<p>09, Design Street, New York, NY- 10001, United States </p>
-									</div>
-									<div class="slider-author col-md-12 col-sm-12 col-xs-6 no-padding">
-										<img src="{% static 'images/slider-thumb3.jpg' %}" alt="slider-thumb" width="74" height="74"/>
-										<h3>David Warner<span>Public Speaker</span></h3>
-									</div>
-									<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
-										<a href="#" title="Register now">Register Now</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			 <!-- Controls -->
 			<div class="container">
@@ -92,23 +49,10 @@
 		<div class="section-padding"></div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="howwecan-left">
-						<div class="img-box">
-							<img src="{% static 'images/howwecan2.jpg' %}" alt="howwecan1" width="149" height="149"/>
-						</div>
-						<div class="img-box">
-							<img src="{% static 'images/howwecan1.jpg' %}" alt="howwecan2" width="149" height="149"/>
-						</div>
-						<div class="img-box">
-							<img src="{% static 'images/howwecan3.jpg' %}" alt="howwecan3" width="149" height="149"/>
-						</div>
-					</div>
-				</div>
 				<div class="col-md-8 col-sm-6 col-xs-12">
 					<div class="howwecan-right">
 						<div class="section-header">
-							<h3>How we can help your business to grow</h3>
+							<h3>How we help you to improve your language skills</h3>
 						</div>
 						<ul class="nav nav-tabs" role="tablist">
 							<li role="presentation">
@@ -144,33 +88,33 @@
 						</ul>
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade" id="howwecan_1">
-								<h3>Presentations 1</h3>
-								<p>Believe it or not I'm walking on air. I never thought I could feel so free! Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. And they knew it was much more than a hunch.</p>
+								<h3>The best places</h3>
+								<p>We provide courses allover the world. We provide courses allover the world. We provide courses allover the world. We provide courses allover the world. We provide courses allover the world.</p>
 								<a href="#" title="Learn more">Learn more</a>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="howwecan_2">
-								<h3>Presentations 2</h3>
-								<p>Believe it or not I'm walking on air. I never thought I could feel so free! Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. And they knew it was much more than a hunch.</p>
+								<h3>The best teachers</h3>
+								<p>We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. </p>
 								<a href="#" title="Learn more">Learn more</a>
 							</div>
 							<div role="tabpanel" class="tab-pane fade in active" id="howwecan_3">
-								<h3>Presentations</h3>
-								<p>Believe it or not I'm walking on air. I never thought I could feel so free! Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. And they knew it was much more than a hunch.</p>
+								<h3>Modern teaching methods</h3>
+								<p>Modern Teaching Techniques have been spread all over the world, which is useful and easy for teachers. </p>
 								<a href="#" title="Learn more">Learn more</a>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="howwecan_4">
-								<h3>Presentations 3</h3>
-								<p>Believe it or not I'm walking on air. I never thought I could feel so free! Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. And they knew it was much more than a hunch.</p>
+								<h3>New modern books</h3>
+								<p>We provide a new modern book for us. We provide a new modern book for us. We provide a new modern book for us. We provide a new modern book for us. </p>
 								<a href="#" title="Learn more">Learn more</a>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="howwecan_5">
-								<h3>Presentations 4</h3>
-								<p>Believe it or not I'm walking on air. I never thought I could feel so free! Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. And they knew it was much more than a hunch.</p>
+								<h3>We use modern technology</h3>
+								<p>We provide a modern tablet for every student. We provide a modern tablet for every student. We provide a modern tablet for every student. We provide a modern tablet for every student.</p>
 								<a href="#" title="Learn more">Learn more</a>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="howwecan_6">
-								<h3>Presentations 5</h3>
-								<p>Believe it or not I'm walking on air. I never thought I could feel so free! Doin' it our way. There's nothing we wont try. Never heard the word impossible. This time there's no stopping us. And they knew it was much more than a hunch.</p>
+								<h3>Certificate</h3>
+								<p>You will receive a certificate after training. </p>
 								<a href="#" title="Learn more">Learn more</a>
 							</div>
 						</div>
@@ -180,295 +124,4 @@
 		</div>
 		<div class="section-padding"></div>
 	</div><!-- Howwecan Section /- -->
-
-	<!-- Introduction Section -->
-	<div class="container-fluid no-padding introduction-section">
-		<div class="introduction-carousel">
-			<div class="col-md-12 no-padding">
-				<div class="introduction-block">
-					<h3 class="block-title">Set up a business meeting</h3>
-					<span class="icon icon-ChartUp"></span>
-					<p>Guys like us we had it made. Those were the days. Sunny Days sweepin' the clouds away. On my way to where the air is sweet. Can you tell me how to get how to get</p>
-					<a href="#" title="Learn more">Learn more</a>
-				</div>
-			</div>
-			<div class="col-md-12 no-padding">
-				<div class="introduction-block">
-					<h3 class="block-title">Set up a business meeting</h3>
-					<span class="icon icon-Heart"></span>
-					<p>Guys like us we had it made. Those were the days. Sunny Days sweepin' the clouds away. On my way to where the air is sweet. Can you tell me how to get how to get</p>
-					<a href="#" title="Learn more">Learn more</a>
-				</div>
-			</div>
-			<div class="col-md-12 no-padding">
-				<div class="introduction-block">
-					<h3 class="block-title">Set up a business meeting</h3>
-					<span class="icon icon-Notes"></span>
-					<p>Guys like us we had it made. Those were the days. Sunny Days sweepin' the clouds away. On my way to where the air is sweet. Can you tell me how to get how to get</p>
-					<a href="#" title="Learn more">Learn more</a>
-				</div>
-			</div>
-		</div>
-	</div><!-- Introduction Section /- -->
-
-	<!-- Team Section -->
-    <div class="section-padding"></div>
-	<div class="container-fluid no-padding team-section">
-		<div class="section-header">
-			<h3>meet our great speakers</h3>
-			<span>Our Great Voices</span>
-		</div>
-		<ul id="team-carousel">
-			<li data-thumb="{% static 'images/team-thumb1.jpg' %}">
-				<div class="col-md-6 no-padding larg-thumb">
-					<img src="{% static 'images/team1.jpg' %}" width="960" height="670" alt="team1"/>
-				</div>
-				<div class="container">
-					<div class="col-md-6 no-padding">
-						<div class="team-content">
-							<h3>Harry richards</h3>
-							<a href="#" title="Public Speaker">Public Speaker</a>
-							<p>The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. And if you threw a party - invited everyone you knew. You would see the biggest gift would be from me and the card.</p>
-							<ul>
-								<li class="fb"><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-								<li class="twt"><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-								<li class="gp"><a title="GooglePlus" href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li class="lnk"><a title="LinkedIn" href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-							<div class="team-event-carousel">
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li data-thumb="{% static 'images/team-thumb2.jpg' %}">
-				<div class="col-md-6 col-xs-12 no-padding larg-thumb">
-					<img src="{% static 'images/team2.jpg' %}" width="960" height="670" alt="team2"/>
-				</div>
-				<div class="container">
-					<div class="col-md-6 no-padding">
-						<div class="team-content">
-							<h3>Andrew richards 2</h3>
-							<a href="#" title="Public Speaker">Public Speaker</a>
-							<p>The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. And if you threw a party - invited everyone you knew. You would see the biggest gift would be from me and the card.</p>
-							<ul>
-								<li class="fb"><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-								<li class="twt"><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-								<li class="gp"><a title="GooglePlus" href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li class="lnk"><a title="LinkedIn" href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-							<div class="team-event-carousel">
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li data-thumb="{% static 'images/team-thumb3.jpg' %}">
-				<div class="col-md-6 no-padding larg-thumb">
-					<img src="{% static 'images/team3.jpg' %}" width="960" height="670" alt="team3"/>
-				</div>
-				<div class="container">
-					<div class="col-md-6 no-padding">
-						<div class="team-content">
-							<h3>Daniel richards 3</h3>
-							<a href="#" title="Public Speaker">Public Speaker</a>
-							<p>The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. And if you threw a party - invited everyone you knew. You would see the biggest gift would be from me and the card.</p>
-							<ul>
-								<li class="fb"><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-								<li class="twt"><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-								<li class="gp"><a title="GooglePlus" href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li class="lnk"><a title="LinkedIn" href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-							<div class="team-event-carousel">
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li data-thumb="{% static 'images/team-thumb4.jpg' %}">
-				<div class="col-md-6 no-padding larg-thumb">
-					<img src="{% static 'images/team4.jpg' %}" width="960" height="670" alt="team4"/>
-				</div>
-				<div class="container">
-					<div class="col-md-6 no-padding">
-						<div class="team-content">
-							<h3>Harry richards 4</h3>
-							<a href="#" title="Public Speaker">Public Speaker</a>
-							<p>The first mate and his Skipper too will do their very best to make the others comfortable in their tropic island nest. And if you threw a party - invited everyone you knew. You would see the biggest gift would be from me and the card.</p>
-							<ul>
-								<li class="fb"><a title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-								<li class="twt"><a title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-								<li class="gp"><a title="GooglePlus" href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li class="lnk"><a title="LinkedIn" href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-							<div class="team-event-carousel">
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-								<a href=""><img src="{% static 'images/team-evnt1.jpg' %}" alt="team-evnt1" width="121" height="89"/></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div><!-- Team Section /- -->
-
-	<!-- Testimonial Section -->
-	<div class="container-fluid testimonial-section no-padding">
-		<div class="section-padding"></div>
-			<div class="container">
-				<div class="section-header">
-					<h3>what our clients say about us</h3>
-					<span>Feedback From Our Clients</span>
-				</div>
-				<div class="testimonial-carousel">
-					<div class="testimonial-block row">
-						<div class="col-md-5 col-sm-12 no-padding">
-							<div class="testimonial-carousel-left">
-								<div class="testimonial-box testimonial-left">
-									<div class="testimonial-content">
-										<p>Feels so right it cant be wrong. Rockin' and rollin' all week long. Then one day he was shootin' at some food..</p>
-										<span>hendry smith villa</span>
-									</div>
-									<img src="{% static 'images/testimonial1.jpg' %}" alt="testimonial1" width="144" height="136"/>
-								</div>
-								<div class="testimonial-box testimonial-left">
-									<div class="testimonial-content">
-										<p>Feels so right it cant be wrong. Rockin' and rollin' all week long. Then one day he was shootin' at some food..</p>
-										<span>hendry smith villa</span>
-									</div>
-									<img src="{% static 'images/testimonial1.jpg' %}" alt="testimonial1" width="144" height="136"/>
-								</div>
-								<div class="testimonial-box testimonial-left">
-									<div class="testimonial-content">
-										<p>Feels so right it cant be wrong. Rockin' and rollin' all week long. Then one day he was shootin' at some food..</p>
-										<span>hendry smith villa</span>
-									</div>
-									<img src="{% static 'images/testimonial1.jpg' %}" alt="testimonial1" width="144" height="136"/>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-2 col-sm-12">
-							<div class="testimonial-blockquote-circle">
-								<span><i class="fa fa-quote-right" aria-hidden="true"></i></span>
-							</div>
-						</div>
-						<div class="col-md-5 col-sm-12 no-padding">
-							<div class="testimonial-carousel-right">
-								<div class="testimonial-box testimonial-right">
-									<div class="testimonial-content">
-										<p>These Happy Days are yours and mine Happy Days. So get a witch's shawl on a broomstick you can crawl on. </p>
-										<span>Mike Davidson</span>
-									</div>
-									<img src="{% static 'images/testimonial2.jpg' %}" alt="testimonial1" width="144" height="136"/>
-								</div>
-								<div class="testimonial-box testimonial-right">
-									<div class="testimonial-content">
-										<p>These Happy Days are yours and mine Happy Days. So get a witch's shawl on a broomstick you can crawl on. </p>
-										<span>Mike Davidson</span>
-									</div>
-									<img src="{% static 'images/testimonial2.jpg' %}" alt="testimonial1" width="144" height="136"/>
-								</div>
-								<div class="testimonial-box testimonial-right">
-									<div class="testimonial-content">
-										<p>These Happy Days are yours and mine Happy Days. So get a witch's shawl on a broomstick you can crawl on. </p>
-
-										<span>Mike Davidson</span>
-									</div>
-									<img src="{% static 'images/testimonial2.jpg' %}" alt="testimonial1" width="144" height="136"/>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<div class="section-padding"></div>
-	</div><!-- Testimonial Section /- -->
-
-	<!-- Latest News -->
-	<div class="container-fluid latest-blog latest-blog-section no-padding">
-		<div class="section-padding"></div>
-		<div class="container">
-			<div class="section-header">
-				<h3>Latest news from events</h3>
-				<span>Recent Updates</span>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<article class="type-post">
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<div class="entry-cover">
-								<!--blogpost-page.html-->
-								<a href="#"><img src="{% static 'images/latest-blog1.jpg' %}" alt="latest-blog" width="267" height="358"/></a>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<div class="entry-meta">
-								<div class="post-date">
-									<a href="#" title=""><i class="fa fa-calendar" aria-hidden="true"></i><span>10 Dec, 2015 </span></a>
-								</div>
-								<div class="post-admin">
-									<i class="fa fa-user" aria-hidden="true"></i><span>by</span><a href="#" title="Admin">Admin</a>
-								</div>
-								<div class="post-like">
-									<a href="#" title="Likes"><i class="fa fa-heart-o" aria-hidden="true"></i></a><span>03 Likes</span>
-								</div>
-							</div>
-							<div class="entry-title">
-								<!--blogpost-page.html-->
-								<a href="#" title="These men promptly escaped from a maximum security"><h3>These men promptly escaped from a maximum security</h3></a>
-							</div>
-							<div class="entry-content">
-								<p>Flatnin' the hills Someday the mountain might get ‘em but the law never will! Makin their way the only way how.</p>
-							</div>
-							<!--blogpost-page.html-->
-							<a href="#" class="learn-more" title="Learn More">Learn More</a>
-						</div>
-					</article>
-				</div>
-				<div class="col-md-6 col-sm-6 col-xs-12">
-					<article class="type-post">
-						<div class="col-md-6 col-sm-6 col-xs-6 ">
-							<div class="entry-cover">
-								<!--blogpost-page.html-->
-								<a href="#"><img src="{% static 'images/latest-blog2.jpg' %}" alt="latest-blog" width="267" height="358"/></a>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6">
-							<div class="entry-meta">
-								<div class="post-date">
-									<a href="#" title=""><i class="fa fa-calendar" aria-hidden="true"></i><span>9 Dec, 2015 </span></a>
-								</div>
-								<div class="post-admin">
-									<i class="fa fa-user" aria-hidden="true"></i><span>by</span><a href="#" title="Admin">Admin</a>
-								</div>
-								<div class="post-like">
-									<a href="#" title="Likes"><i class="fa fa-heart-o" aria-hidden="true"></i></a><span>11 Likes</span>
-								</div>
-							</div>
-							<div class="entry-title">
-								<!--blogpost-page.html-->
-								<a href="#" title="Today still wanted by the government survive"><h3>Today still wanted by the government survive</h3></a>
-							</div>
-							<div class="entry-content">
-								<p>You would see the biggest gift would be from me and the card attached would say thank you for being a friend.</p>
-							</div>
-							<!--blogpost-page.html-->
-								<a href="#" class="learn-more" title="Learn More">Learn More</a>
-						</div>
-					</article>
-				</div>
-			</div>
-		</div>
-		<div class="section-padding"></div>
-	</div><!-- Latest News /- -->
 {% endblock %}
