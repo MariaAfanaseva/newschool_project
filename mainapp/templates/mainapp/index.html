@@ -1,0 +1,127 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+	<!-- Slider Section -->
+	<div id="slider-section" class="slider-section container-fluid no-padding">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner" role="listbox">
+				{% for course in current_courses %}
+					<div class="{% if forloop.counter == 1 %}item active
+								{% else %}item
+								{% endif %}">
+						<img src="{{MEDIA_URL}}{{course.image}}" alt="slide2" width="1920" height="770"/>
+						<div class="carousel-caption">
+							<div class="container">
+								<div class="col-md-5 col-sm-6 col-xs-9 pull-right">
+									<div class="slider-content-box">
+										<div class="col-md-12 col-sm-12 col-xs-6 no-padding">
+											<h3 class="slider-title">{{course}}</h3>
+											<span>{{course.start_date|date:"d N y"}} - {{course.finish_date|date:"d N y"}}</span>
+											<p>{{course.address}}</p>
+											{% for teacher in course.teacher.all %}
+												<p>{{teacher}}</p>
+											{% endfor %}
+										</div>
+										<div class="col-md-12 col-sm-12 col-xs-6 no-padding section-padding">
+											<a href="{% url 'main:language_course' course.pk %}">Show course</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			 <!-- Controls -->
+			<div class="container">
+				<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+					<i class="fa fa-angle-left"></i>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+					<i class="fa fa-angle-right"></i>
+				</a>
+			</div>
+		</div>
+	</div><!-- Slider Section /- -->
+
+	<!-- Howwecan Section -->
+	<div class="container-fluid no-padding howwecan-section">
+		<div class="section-padding"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-6 col-xs-12">
+					<div class="howwecan-right">
+						<div class="section-header">
+							<h3>How we help you to improve your language skills</h3>
+						</div>
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation">
+								<a href="#howwecan_1" aria-controls="howwecan_1" role="tab" data-toggle="tab">
+									<span class="icon icon-WorldWide"></span>
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#howwecan_2" aria-controls="howwecan_2" role="tab" data-toggle="tab">
+									<span class="icon icon-Briefcase"></span>
+								</a>
+							</li>
+							<li role="presentation" class="active">
+								<a href="#howwecan_3" aria-controls="howwecan_3" role="tab" data-toggle="tab">
+									<span class="icon icon-Files"></span>
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#howwecan_4" aria-controls="howwecan_4" role="tab" data-toggle="tab">
+									<span class="icon icon-Book"></span>
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#howwecan_5" aria-controls="howwecan_5" role="tab" data-toggle="tab">
+									<span class="icon icon-Folder"></span>
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#howwecan_6" aria-controls="howwecan_6" role="tab" data-toggle="tab">
+									<span class="icon icon-ClipboardChart"></span>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane fade" id="howwecan_1">
+								<h3>The best places</h3>
+								<p>We provide courses allover the world. We provide courses allover the world. We provide courses allover the world. We provide courses allover the world. We provide courses allover the world.</p>
+								<a href="#" title="Learn more">Learn more</a>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="howwecan_2">
+								<h3>The best teachers</h3>
+								<p>We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. We have the best teachers. </p>
+								<a href="#" title="Learn more">Learn more</a>
+							</div>
+							<div role="tabpanel" class="tab-pane fade in active" id="howwecan_3">
+								<h3>Modern teaching methods</h3>
+								<p>Modern Teaching Techniques have been spread all over the world, which is useful and easy for teachers. </p>
+								<a href="#" title="Learn more">Learn more</a>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="howwecan_4">
+								<h3>New modern books</h3>
+								<p>We provide a new modern book for us. We provide a new modern book for us. We provide a new modern book for us. We provide a new modern book for us. </p>
+								<a href="#" title="Learn more">Learn more</a>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="howwecan_5">
+								<h3>We use modern technology</h3>
+								<p>We provide a modern tablet for every student. We provide a modern tablet for every student. We provide a modern tablet for every student. We provide a modern tablet for every student.</p>
+								<a href="#" title="Learn more">Learn more</a>
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="howwecan_6">
+								<h3>Certificate</h3>
+								<p>You will receive a certificate after training. </p>
+								<a href="#" title="Learn more">Learn more</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section-padding"></div>
+	</div><!-- Howwecan Section /- -->
+{% endblock %}

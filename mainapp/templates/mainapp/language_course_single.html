@@ -1,0 +1,136 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load tags %}
+{% block content %}
+	<!-- PageBanner -->
+	<div class="container-fluid page-banner event-grid event-list no-padding">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Course Details</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>Language courses</li>
+							<li class="active">{{ lang_course.language }}</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+	
+	<!-- Course -->
+	<div class="container-fluid eventsingle eventlist upcoming-event latest-blog our-history no-padding">
+		<div class="section-padding"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9 col-sm-8 content-area">
+					<article class="type-post">
+						<div class="entry-cover">
+							<img src="{% static 'images/default_course_img.jpg' %}" alt="event-single" width="820" height="410"/>
+						</div>
+						<div class="entry-block">
+							<div class="entry-title">
+								<h3>{{lang_course.course.name}}</h3>
+							</div>
+							<div class="entry-meta">
+								<div class="post-date">
+									<p>{{lang_course.course.start_date | str_month }}<span>
+                                        {{lang_course.course.start_date.day}}</span></p>
+								</div>
+								<div class="post-metablock">
+									<div class="post-time">
+										<span class="icon icon-Notes"></span>
+										<span>{{lang_course.course.start_date|date:"d N Y"}} - {{lang_course.course.finish_date|date:"d N Y"}}</span>
+									</div>
+									<div class="post-time">
+										<span class="icon icon-Time"></span>
+										<span>{{lang_course.course.start_date.time|time:"g:i a"}} - {{lang_course.course.finish_date|time:"g:i a"}}</span>
+									</div>
+									<div class="post-location">
+										<span class="icon icon-Tag"></span>
+										<span>Level - {{lang_course.level_letter}}{{lang_course.level_number}}</span>
+									</div>
+									<div class="post-location">
+										<span class="icon icon-User"></span>
+										<span>
+											Teacher - {% for teacher in lang_course.course.teacher.all %}
+											<a href="{% url 'main:teacher' teacher.pk %}">{{teacher}}</a>{% endfor %}
+										</span>
+									</div>
+									<div class="post-location">
+										<span class="icon icon-Pointer"></span>
+										<span>{{lang_course.course.address}}</span>
+									</div>
+								</div>
+							</div>
+							<div class="entry-content">
+								<p>{{lang_course.course.description}}</p>
+							</div>
+						</div>
+					</article>
+
+    					<!-- Map -->
+					<div class="map">
+						<iframe src={{lang_course.course.address.google_map}} width="700" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+					</div><!-- Map /- -->
+
+					<!-- Ow Pagination -->
+					<div class="ow-pagination">
+						<nav>
+							<ul class="pager">
+								<li class="page-prv"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous course</a></li>
+								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
+								<li class="page-next"><a href="#">Next course<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</nav>
+					</div><!-- Ow Pagination /- -->
+                </div>
+				<div class="col-md-3 col-sm-4 widget-area">
+                    <aside class="widget widget_find_event">
+						<div class="widget-title">
+							<span class="icon icon-Podium"></span>
+							<h3>Find courses</h3>
+						</div>
+						<div class="find-event_top-block">
+							<div class="input-group">
+								<input type="text" placeholder="Enter keyword" class="form-control"/>
+								<span class="icon icon-Eye"></span>
+								<span class="input-group-btn">
+									<button type="button" class="btn"><i class="fa fa-search"></i></button>
+								</span>
+							</div>
+							<div class="event-select-option">
+								<select class="selectpicker">
+									<option data-icon="icon-WorldWide">Course Location</option>
+									<option data-icon="icon-WorldWide">Location 1</option>
+									<option data-icon="icon-WorldWide">Location 2</option>
+									<option data-icon="icon-WorldWide">Location 3</option>
+								</select>
+							</div>
+							<div class="event-select-option">
+								<select class="selectpicker">
+									<option data-icon="icon-Notes">Search by date</option>
+									<option data-icon="icon-Notes">Date 1</option>
+									<option data-icon="icon-Notes">Date 2</option>
+									<option data-icon="icon-Notes">Date 3</option>
+								</select>
+							</div>
+							<div class="event-select-option">
+								<select class="selectpicker">
+									<option data-icon="icon-Tag">Search by level</option>
+									<option data-icon="icon-Tag">category 1</option>
+									<option data-icon="icon-Tag">category 2</option>
+									<option data-icon="icon-Tag">category 3</option>
+								</select>
+							</div>
+							<a href="#">Search</a>
+						</div>
+					</aside>
+                </div>
+			</div>
+		</div>
+		<div class="section-padding"></div>
+	</div>
+{% endblock %}

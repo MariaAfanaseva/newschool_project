@@ -1,0 +1,17 @@
+[
+  {
+    "name": "English",
+    "description": "The most popular language in the world.",
+    "is_active": "True"
+  },
+  {
+    "name": "German",
+    "description": "The language in Germany and in the other European countries.",
+    "is_active": "True"
+  },
+  {
+    "name": "Italian",
+    "description": "The language in Italy.",
+    "is_active": "True"
+  }
+]

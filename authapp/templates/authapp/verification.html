@@ -1,0 +1,30 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+{% block content %}
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        {% if request.resolver_match.url_name == 'verify' %}
+                            {% if user.is_authenticated %}
+                                <div>Congratulations! You are successfully registered and login.</div>
+                            {% else %}
+                                <div>Something went wrong. Repeat one more time.</div>
+                            {% endif %}
+                        {% else %}
+                            <div>A message has been sent to you.
+                                Follow the link in the message for further registration.</div>
+                        {% endif %}
+
+                        <div class="form-group form-button">
+                            <a href="{% url 'main:index' %}" class="form-submit rm_underline">Home</a>
+                        </div>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'images/signup-image.jpg' %}" alt="sing up image"></figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

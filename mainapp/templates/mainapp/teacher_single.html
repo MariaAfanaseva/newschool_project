@@ -1,0 +1,95 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load tags %}
+{% block content %}
+<!--PageBanner-->
+	<div class="container-fluid page-banner event-grid event-list no-padding">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Teacher</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>Teachers</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+<!-- Teacher -->
+	<div class="container-fluid eventsingle eventlist upcoming-event latest-blog our-history no-padding">
+		<div class="section-padding"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9 col-sm-8 content-area">
+					<article class="type-post">
+						<div class="entry-cover">
+							<img src="{{MEDIA_URL}}{{teacher.photo}}" alt="teacher-single" width="820" height="410"/>
+						</div>
+						<div class="entry-block">
+							<div class="entry-title">
+								<h3>{{teacher}}</h3>
+							</div>
+							<div class="entry-meta">
+                                <ul>
+									<li class="fb"><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+									<li class="twt"><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+									<li class="lnk"><a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+									<li class="gp"><a href="#" title="GooglePlus"><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+                                <div>Date of Birth: {{teacher.dob}}</div>
+                                <div>Education: {{teacher.education}}</div>
+							</div>
+							<div class="entry-content">
+								<p>{{teacher.about_teacher}}</p>
+							</div>
+                        </div>
+					</article>
+                </div>
+            </div>
+		</div>
+		<div class="section-padding"></div>
+	</div><!-- Teacher /- -->
+	<!-- Teacher courses -->
+	<div class="container-fluid our-history our-history-section upcoming-event latest-blog no-padding">
+		<div class="container">
+			<div class="section-header">
+				<span>Current courses with {{teacher}}</span>
+			</div>
+			<div class="row">
+                {% for course in teacher_courses %}
+				    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <article class="type-post">
+                            <div class="entry-block">
+                                <div class="entry-title">
+                                    <a href="{% url 'main:language_course' course.pk %}" ><h3>{{course.name}}</h3></a>
+                                </div>
+                                <div class="entry-meta">
+                                    <div class="post-date">
+                                        <p>{{course.start_date|str_month }}<span>
+											{{course.start_date.day}}</span></p>
+                                    </div>
+                                    <div class="post-metablock">
+                                        <div class="post-time">
+                                            <span>{{course.start_date|date:"d.M"}} - {{course.finish_date|date:"d.M"}}, {{course.start_date.time|time:"g:i a"}} - {{course.finish_date|time:"g:i a"}}</span>
+									    </div>
+                                        <div class="post-location">
+                                            <span>{{course.address}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry-content">
+                                    <p>{{course.short_desc}}</p>
+                                </div>
+                                <a href="{% url 'main:language_course' course.pk %}" class="learn-more">Learn More</a>
+                            </div>
+                        </article>
+				    </div>
+                {% endfor %}
+			</div>
+		</div>
+		<div class="section-padding"></div>
+	</div><!-- Teacher courses /- -->
+{% endblock %}

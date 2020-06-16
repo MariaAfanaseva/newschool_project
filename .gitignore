@@ -1,0 +1,6 @@
+*.pyc
+.idea
+conf/
+*.yml
+migrations/
+media/
