@@ -13,12 +13,17 @@
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
 
-                                {% if login_form.errors %}
-                                    <p class="error_message">Wrong email or password.</p>
-                                {% endif %}
+                        {% if login_form.errors %}
+                            <p class="error_message">Wrong email or password.</p>
+                        {% endif %}
 
                         <form method="POST" class="register-form" id="login-form">
                             {% csrf_token %}
+
+                            {% if next %}
+                                <input type="hidden" name="next" value="{{ next }}">
+                            {% endif %}
+
                             {% for field in login_form %}
                                 <div class="form-group">
                                     <label for="{{ field.id_for_label }}"><i id="{{ field.id_for_label }}_icon" class="zmdi"></i></label>

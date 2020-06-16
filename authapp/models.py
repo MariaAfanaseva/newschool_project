@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.utils.timezone import now, timedelta
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 def get_verification_key_time():
@@ -68,3 +70,27 @@ class UserVerify(models.Model):
             return True
         else:
             return False
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    surname = models.CharField(verbose_name='Surname', max_length=128, blank=True)
+    country = models.CharField(verbose_name='Country', max_length=128, blank=True)
+    city = models.CharField(verbose_name='City', max_length=128, blank=True)
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        """
+
+        SIGNAL saves new user profile and update user
+        profile when user save and update.
+
+        """
+        user = instance
+        if created:
+            UserProfile.objects.create(user=user)  # create
+        else:
+            instance.userprofile.save()  # save form
+
+    def __str__(self):
+        return self.surname

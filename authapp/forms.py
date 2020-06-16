@@ -2,7 +2,7 @@ import hashlib
 import random
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from authapp.models import User, UserVerify
+from authapp.models import User, UserVerify, UserProfile
 
 
 class UserRegisterForm(forms.ModelForm):
@@ -58,5 +58,30 @@ class UserLoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['placeholder'] = field.label
+
+
+class UserEditForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('email', 'name')
+
+    def __init__(self, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['placeholder'] = field.label
+        self.fields['email'].widget.attrs['readonly'] = True
+
+
+class UserProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ('surname', 'country', 'city')
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['placeholder'] = field.label
