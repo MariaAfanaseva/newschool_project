@@ -304,6 +304,19 @@ figure {
   display: block;
   text-align: center; }
 
+.forgot-password-link {
+  font-size: 12px;
+  color: #222;
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  color: #6dabe4;
+  text-decoration: underline;
+}
+
 .term-service {
   font-size: 13px;
   color: #222; }

@@ -149,8 +149,9 @@ EMAIL_HOST_USER = config.get('smtp', 'EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = config.getboolean('smtp', 'EMAIL_USE_SSL')
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'tmp/email_messages/'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = 'tmp/email_messages/'
 
 DOMAIN_NAME = 'http://localhost:8000'
 

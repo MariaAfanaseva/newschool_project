@@ -4,10 +4,14 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.core.mail import send_mail
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from authapp.forms import (UserRegisterForm, UserLoginForm,
-                           UserEditForm, UserProfileForm)
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from authapp.forms import (
+    UserRegisterForm, UserLoginForm,
+    UserEditForm, UserProfileForm,
+    ChangePasswordForm
+)
 from school.settings import DOMAIN_NAME, EMAIL_HOST_USER
 from authapp.models import User
 
@@ -79,8 +83,8 @@ class UserLogin(View):
         return render(request, self.template_name, {'login_form': login_form})
 
 
-@method_decorator(login_required, name='dispatch')
-class UserLogout(View):
+class UserLogout(LoginRequiredMixin, View):
+    login_url = 'auth:login'
 
     def get(self, request):
         logout(request)
@@ -106,19 +110,21 @@ class UserVerify(View):
             return render(request, self.template_name, context)
 
 
-@method_decorator(login_required, name='dispatch')
-class UserProfileView(View):
+class UserProfileView(LoginRequiredMixin, View):
+    login_url = 'auth:login'
     template_name = 'authapp/profile.html'
     edit_form = UserEditForm
     profile_form = UserProfileForm
 
     def get(self, request):
+        next_url = request.GET['next'] if 'next' in request.GET.keys() else ''
         user_form = self.edit_form(instance=request.user)
         profile_form = self.profile_form(instance=request.user.userprofile)
         context = {
             'title': 'Profile',
             'user_form': user_form,
             'profile_form': profile_form,
+            'next': next_url,
         }
         return render(request, self.template_name, context)
 
@@ -128,6 +134,17 @@ class UserProfileView(View):
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()  # signal from user save user profile
-            return HttpResponseRedirect(reverse('main:index'))
+            print(request.POST.keys())
+            if 'next' in request.POST.keys():
+                return HttpResponseRedirect(request.POST['next'])
+            else:
+                return HttpResponseRedirect(reverse('main:index'))
+
         return render(request, self.template_name,
                       {'user_form': user_form, 'profile_form': profile_form})
+
+
+class ChangePasswordView(PasswordChangeView):
+    form_class = ChangePasswordForm
+    template_name = 'authapp/password_change.html'
+    success_url = reverse_lazy('auth:password_change_done')

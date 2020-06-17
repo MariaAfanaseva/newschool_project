@@ -96,15 +96,9 @@
 			<!-- Container -->
 			<div class="container">
 				<!-- User -->
-                {% if user.is_authenticated %}
-                    <a href="{% url 'auth:profile' %}" class="user">
-                        <i class="fa fa-user"></i>
-                    </a>
-                {% else %}
-                    <a href="{% url 'auth:login' %}?next={{ request.path }}" class="user">
-                        <i class="fa fa-user"></i>
-                    </a>
-                {% endif %}
+                <a href="{% url 'auth:profile' %}?next={{ request.path }}" class="user">
+                    <i class="fa fa-user"></i>
+                </a>
                  <!--User /- -->
 				<!-- Expanding Search -->
 				<div class="menu-search">
