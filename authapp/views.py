@@ -5,12 +5,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import (
+    PasswordChangeView, PasswordResetView,
+    PasswordResetConfirmView
+)
 from django.urls import reverse_lazy
 from authapp.forms import (
     UserRegisterForm, UserLoginForm,
     UserEditForm, UserProfileForm,
-    ChangePasswordForm
+    ChangePasswordForm, PasswordConfirmForm
 )
 from school.settings import DOMAIN_NAME, EMAIL_HOST_USER
 from authapp.models import User
@@ -148,3 +151,16 @@ class ChangePasswordView(PasswordChangeView):
     form_class = ChangePasswordForm
     template_name = 'authapp/password_change.html'
     success_url = reverse_lazy('auth:password_change_done')
+
+
+class ResetPasswordView(PasswordResetView):
+    template_name = 'authapp/password_reset.html'
+    success_url = reverse_lazy('auth:password_reset_done')
+    subject_template_name = 'authapp/password_reset_subject.txt'
+    email_template_name = 'authapp/password_reset_email.html'
+
+
+class ResetPasswordConfirmView(PasswordResetConfirmView):
+    form_class = PasswordConfirmForm
+    template_name = 'authapp/password_reset_confirm.html'
+    success_url = reverse_lazy('auth:password_reset_complete')

@@ -2,7 +2,8 @@ import hashlib
 import random
 from django import forms
 from django.contrib.auth.forms import (
-    AuthenticationForm, PasswordChangeForm
+    AuthenticationForm, PasswordChangeForm,
+    SetPasswordForm
 )
 from authapp.models import User, UserVerify, UserProfile
 
@@ -93,5 +94,13 @@ class ChangePasswordForm(PasswordChangeForm):
 
     def __init__(self, *args, **kwargs):
         super(ChangePasswordForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['placeholder'] = field.label
+
+
+class PasswordConfirmForm(SetPasswordForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['placeholder'] = field.label
