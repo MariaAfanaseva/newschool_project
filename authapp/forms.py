@@ -76,6 +76,7 @@ class UserEditForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['placeholder'] = field.label
         self.fields['email'].widget.attrs['readonly'] = True
+        self.fields['email'].widget.attrs['class'] = 'change-cursor'
 
 
 class UserProfileForm(forms.ModelForm):

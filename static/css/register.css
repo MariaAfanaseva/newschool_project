@@ -330,6 +330,10 @@ figure {
     text-decoration: none;
    }
 
+.change-cursor {
+  cursor: not-allowed;
+}
+
 .term-service {
   font-size: 13px;
   color: #222; }

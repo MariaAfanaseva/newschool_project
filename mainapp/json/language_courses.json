@@ -26,5 +26,19 @@
     "level_letter": "С",
     "level_number": 1.1,
     "book": "Great! С1"
+  },
+  {
+    "course": "Standart English course",
+    "language": "English",
+    "level_letter": "A",
+    "level_number": 1.1,
+    "book": "Great! A1"
+  },
+  {
+    "course": "Standart course German",
+    "language": "German",
+    "level_letter": "A",
+    "level_number": 1.1,
+    "book": "Netzwerk A1"
   }
 ]
