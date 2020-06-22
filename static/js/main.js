@@ -1,4 +1,4 @@
-function add_class_icon(){
+function addClassIcon(){
     const classes = {
         'id_name_icon':['zmdi-account', 'material-icons-name'],
         'id_username_icon':['zmdi-email'],
@@ -23,4 +23,31 @@ function add_class_icon(){
     }
 }
 
-add_class_icon();
+addClassIcon();
+
+function ajaxPagination() {
+    $( document ).on('click', '.ow-pagination a', (event) => {
+        if (event.target.hasAttribute('href')) {
+            let page_url = event.target.href;
+            $.ajax(
+                {
+                    url: page_url,
+                    type: 'GET',
+                    success: (data) => {
+                        $('#courses_row').empty();
+                        $('#courses_row').append( $(data).find('#courses_row').html() );
+                    }
+                }
+            );
+        event.preventDefault();
+        }
+    })
+}
+
+$(document).ready(() => {
+    ajaxPagination();
+});
+
+$(document).ajaxStop(() => {
+    ajaxPagination();
+});
