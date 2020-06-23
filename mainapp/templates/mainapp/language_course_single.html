@@ -12,14 +12,14 @@
 						<ol class="breadcrumb">
 							<li><a href="{% url 'main:index' %}">Home</a></li>
 							<li>Language courses</li>
-							<li class="active">{{ lang_course.language }}</li>
+							<li class="active">{{ current_course.language }}</li>
 						</ol>
 					</div>
 				</div>
 			</div>
 		<div class="section-padding"></div>
 	</div><!-- PageBanner /- -->
-	
+
 	<!-- Course -->
 	<div class="container-fluid eventsingle eventlist upcoming-event latest-blog our-history no-padding">
 		<div class="section-padding"></div>
@@ -32,61 +32,51 @@
 						</div>
 						<div class="entry-block">
 							<div class="entry-title">
-								<h3>{{lang_course.course.name}}</h3>
+								<h3>{{current_course.course.name}}</h3>
 							</div>
 							<div class="entry-meta">
 								<div class="post-date">
-									<p>{{lang_course.course.start_date | str_month }}<span>
-                                        {{lang_course.course.start_date.day}}</span></p>
+									<p>{{current_course.course.start_date | str_month }}<span>
+                                        {{current_course.course.start_date.day}}</span></p>
 								</div>
 								<div class="post-metablock">
 									<div class="post-time">
 										<span class="icon icon-Notes"></span>
-										<span>{{lang_course.course.start_date|date:"d N Y"}} - {{lang_course.course.finish_date|date:"d N Y"}}</span>
+										<span>{{current_course.course.start_date|date:"d N Y"}} - {{current_course.course.finish_date|date:"d N Y"}}</span>
 									</div>
 									<div class="post-time">
 										<span class="icon icon-Time"></span>
-										<span>{{lang_course.course.start_date.time|time:"g:i a"}} - {{lang_course.course.finish_date|time:"g:i a"}}</span>
+										<span>{{current_course.course.start_date.time|time:"g:i a"}} - {{current_course.course.finish_date|time:"g:i a"}}</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-Tag"></span>
-										<span>Level - {{lang_course.level_letter}}{{lang_course.level_number}}</span>
+										<span>Level - {{current_course.level_letter}}{{current_course.level_number}}</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-User"></span>
 										<span>
-											Teacher - {% for teacher in lang_course.course.teacher.all %}
+											Teacher - {% for teacher in current_course.course.teacher.all %}
 											<a href="{% url 'main:teacher' teacher.pk %}">{{teacher}}</a>{% endfor %}
 										</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-Pointer"></span>
-										<span>{{lang_course.course.address}}</span>
+										<span>{{current_course.course.address}}</span>
 									</div>
 								</div>
 							</div>
 							<div class="entry-content">
-								<p>{{lang_course.course.description}}</p>
+								<p>{{current_course.course.description}}</p>
 							</div>
 						</div>
 					</article>
 
-    					<!-- Map -->
+					<!-- Map -->
 					<div class="map">
-						<iframe src={{lang_course.course.address.google_map}} width="700" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+						<iframe src={{current_course.course.address.google_map}} width="700" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div><!-- Map /- -->
-
-					<!-- Ow Pagination -->
-					<div class="ow-pagination">
-						<nav>
-							<ul class="pager">
-								<li class="page-prv"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous course</a></li>
-								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
-								<li class="page-next"><a href="#">Next course<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-							</ul>
-						</nav>
-					</div><!-- Ow Pagination /- -->
                 </div>
+
 				<div class="col-md-3 col-sm-4 widget-area">
                     <aside class="widget widget_find_event">
 						<div class="widget-title">
@@ -133,4 +123,55 @@
 		</div>
 		<div class="section-padding"></div>
 	</div>
+
+<!-- Current courses -->
+	<div class="container-fluid our-history our-history-section upcoming-event latest-blog no-padding">
+		<div  id="current-courses" class="container">
+			<div class="section-header">
+				<span>Current courses {{ current_course.language }}</span>
+			</div>
+			<div class="row">
+                {% for lang_course in page_obj %}
+				    <div class="col-md-4 col-sm-6 col-xs-6">
+                        <article class="type-post">
+                            <div class="entry-block">
+                                <div class="entry-title">
+                                    <a href="{% url 'main:language_course' lang_course.pk %}" ><h3>{{lang_course.course.name}}</h3></a>
+                                </div>
+                                <div class="entry-meta">
+                                    <div class="post-date">
+                                        <p>{{lang_course.course.start_date|str_month }}<span>
+											{{lang_course.start_date.day}}</span></p>
+                                    </div>
+                                    <div class="post-metablock">
+                                        <div class="post-time">
+                                            <span>{{lang_course.course.start_date|date:"d.M"}} -
+												{{lang_course.course.finish_date|date:"d.M"}},
+												{{lang_course.course.start_date.time|time:"g:i a"}} -
+												{{lang_course.course.finish_date|time:"g:i a"}}</span>
+									    </div>
+                                        <div class="post-location">
+                                            <span>{{lang_course.course.address}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry-content">
+                                    <p>{{lang_course.course.short_desc}}</p>
+                                </div>
+                                <a href="{% url 'main:language_course' lang_course.course.pk %}" class="learn-more">Learn More</a>
+                            </div>
+                        </article>
+				    </div>
+                {% endfor %}
+			</div>
+
+			<!-- Ow Pagination -->
+			<div id="single-course-pagination">
+				{% include 'mainapp/includes/pagination.html'%}
+			</div>
+			<!-- Ow Pagination /- -->
+
+		</div>
+		<div class="section-padding"></div>
+	</div><!-- Current courses /- -->
 {% endblock %}

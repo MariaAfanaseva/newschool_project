@@ -54,7 +54,7 @@
 	</div><!-- Teacher /- -->
 	<!-- Teacher courses -->
 	<div class="container-fluid our-history our-history-section upcoming-event latest-blog no-padding">
-		<div class="container">
+		<div id="teacher_courses" class="container">
 			<div class="section-header">
 				<span>Current courses with {{teacher}}</span>
 			</div>
@@ -89,6 +89,13 @@
 				    </div>
                 {% endfor %}
 			</div>
+
+			<!-- Ow Pagination -->
+				<div id="single-teacher-pagination">
+					{% include 'mainapp/includes/pagination.html'%}
+				</div>
+			<!-- Ow Pagination /- -->
+
 		</div>
 		<div class="section-padding"></div>
 	</div><!-- Teacher courses /- -->
