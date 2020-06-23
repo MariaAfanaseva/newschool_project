@@ -2510,6 +2510,11 @@
 	text-align: left;
 }
 
+.pagination_a {
+	pointer-events: none;
+	opacity: 0.3;
+}
+
 /* -- Our History */
 .our-history.upcoming-event.latest-blog .entry-cover {
 	float: none;

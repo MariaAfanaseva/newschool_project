@@ -302,7 +302,37 @@ figure {
   font-size: 14px;
   color: #222;
   display: block;
-  text-align: center; }
+  text-align: center;
+}
+
+.forgot-password-link {
+  font-size: 12px;
+  color: #222;
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.reset-password-link {
+  font-size: 14px;
+  color: #222;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover,.reset-password-link:hover,
+.signup-image-link:hover {
+  color: #6dabe4;
+  text-decoration: underline;
+}
+
+.forgot-password-link:visited,.reset-password-link:visited {
+    color: black;
+    text-decoration: none;
+   }
+
+.change-cursor {
+  cursor: not-allowed;
+}
 
 .term-service {
   font-size: 13px;

@@ -4,3 +4,5 @@ conf/
 *.yml
 migrations/
 media/
+logs/
+tmp/

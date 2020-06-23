@@ -90,9 +90,17 @@
 					<div class="ow-pagination">
 						<nav>
 							<ul class="pager">
-								<li class="page-prv"><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous courses</a></li>
-								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
-								<li class="page-next"><a href="#">Next courses<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+								{% if page_obj.has_previous %}
+									<li class="page-prv"><a href="?page={{ page_obj.previous_page_number  }}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous courses</a></li>
+								{% else %}
+									<li class="page-prv"><a class="pagination_a"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous courses</a></li>
+								{% endif %}
+								<li>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</li>
+								{% if page_obj.has_next %}
+									<li class="page-next"><a href="?page={{ page_obj.next_page_number }}">Next courses<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+								{% else %}
+									<li class="page-next"><a class="pagination_a">Next courses<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+								{% endif %}
 							</ul>
 						</nav>
 					</div><!-- Ow Pagination /- -->
