@@ -33,7 +33,7 @@ class IndexListView(ListView):
 class LanguageCoursesListView(ListView):
     context_object_name = 'language_courses'
     template_name = 'mainapp/courses_list.html'
-    paginate_by = 1
+    paginate_by = 3
 
     def get_queryset(self):
         pk = self.kwargs['pk']
