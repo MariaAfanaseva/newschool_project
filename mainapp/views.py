@@ -6,15 +6,6 @@ from mainapp.models import (LanguageCourses, Languages,
                             )
 
 
-def get_languages():
-    return Languages.objects.all()
-
-
-def get_courses(language_pk):
-    return LanguageCourses.objects.filter(language=language_pk).\
-        filter(course__start_date__gte=datetime.datetime.now())
-
-
 class IndexListView(ListView):
     template_name = 'mainapp/index.html'
     context_object_name = 'current_courses'
@@ -26,7 +17,7 @@ class IndexListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Home'
-        context['languages'] = get_languages()
+        context['languages'] = Languages.get_languages()
         return context
 
 
@@ -39,12 +30,12 @@ class LanguageCoursesListView(ListView):
         pk = self.kwargs['pk']
         self.current_language = get_object_or_404(Languages,
                                                   pk=pk)
-        return get_courses(pk)
+        return LanguageCourses.get_courses(pk)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['current_language'] = self.current_language
-        context['languages'] = get_languages()
+        context['languages'] = Languages.get_languages()
         context['title'] = 'Language courses'
         return context
 
@@ -58,11 +49,11 @@ class LanguageCourseView(ListView):
         course_pk = self.kwargs['pk']
         self.course = get_object_or_404(LanguageCourses, pk=course_pk)
         language_pk = self.course.language.pk
-        return get_courses(language_pk)
+        return LanguageCourses.get_courses(language_pk)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['languages'] = get_languages()
+        context['languages'] = Languages.get_languages()
         context['title'] = 'Language course'
         context['current_course'] = self.course
         return context
@@ -76,7 +67,7 @@ class TeachersListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['languages'] = get_languages()
+        context['languages'] = Languages.get_languages()
         context['title'] = 'Teachers'
         return context
 
@@ -94,7 +85,7 @@ class TeacherView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['languages'] = get_languages()
+        context['languages'] = Languages.get_languages()
         context['title'] = 'Teacher'
         context['teacher'] = self.teacher
         return context

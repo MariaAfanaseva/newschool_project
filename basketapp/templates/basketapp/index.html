@@ -1,0 +1,7 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    {% for item in basket_items %}
+        <div>{{item.course.name}}</div>
+    {% endfor %}
+{% endblock %}

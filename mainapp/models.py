@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 
 
@@ -63,6 +64,10 @@ class Languages(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def get_languages():
+        return Languages.objects.all()
+
 
 class LanguageCourses(models.Model):
     course = models.OneToOneField(Courses, primary_key=True, on_delete=models.CASCADE)
@@ -73,3 +78,8 @@ class LanguageCourses(models.Model):
 
     def __str__(self):
         return f'{self.language}'
+
+    @staticmethod
+    def get_courses(language_pk):
+        return LanguageCourses.objects.filter(language=language_pk). \
+            filter(course__start_date__gte=datetime.datetime.now())
