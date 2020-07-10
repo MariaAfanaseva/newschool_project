@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load tags %}
 <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
@@ -78,7 +79,11 @@
                             <a class="register-link" href="{% url 'auth:login' %}?next={{ request.path }}">Login</a>
                         {% endif %}
 
-						<a class="shop-cart" href="{% url 'basket:index' %}"><i class="fa fa-shopping-cart"></i></a>
+						<a class="shop-cart" href="{% url 'basket:index' %}"><i class="fa fa-shopping-cart">
+                            {% if cart|cart_total_quantity > 0 %}
+                                {{cart|cart_total_quantity}}
+                            {% endif %}
+                        </i></a>
                     </div>
 
 					<!-- Logo Block -->
@@ -214,10 +219,8 @@
         </div><!-- Container /- -->
     </footer><!-- Footer Main /- -->
 {% endblock %}
-{% block js %}
     <!-- JQuery v1.11.3 -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
 
     <!-- Library - Js -->
     <script src="{% static 'libraries/lib.js' %}"></script><!-- Bootstrap JS File v3.3.5 -->
@@ -227,6 +230,7 @@
     <!-- Library - Google Map API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn3Z6i1AYolP3Y2SGis5qhbhRwmxxo1wU"></script>
     <script src="{% static 'js/functions.js' %}"></script>
+{% block js %}
 {% endblock %}
 </body>
 </html>

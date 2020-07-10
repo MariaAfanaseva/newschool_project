@@ -1,4 +1,4 @@
-import datetime
+from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 from mainapp.models import (LanguageCourses, Languages,
@@ -12,7 +12,7 @@ class IndexListView(ListView):
 
     def get_queryset(self):
         return Courses.objects.filter(
-            start_date__gte=datetime.datetime.now()).order_by("?")[:4]
+            start_date__gte=timezone.now()).order_by("?")[:4]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -81,7 +81,7 @@ class TeacherView(ListView):
         teacher_pk = self.kwargs['pk']
         self.teacher = get_object_or_404(Teachers, pk=teacher_pk)
         return Courses.objects.filter(teacher=teacher_pk).\
-            filter(start_date__gte=datetime.datetime.now())
+            filter(start_date__gte=timezone.now())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

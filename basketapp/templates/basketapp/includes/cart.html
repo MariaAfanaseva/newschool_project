@@ -1,0 +1,56 @@
+<div class="container cart">
+    <div class="cart-title">
+        <span class="cart-title">Your shop card</span>
+    </div>
+    <div id="cart-items">
+        <div class="container">
+            <div class="table-responsive cart-info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart-menu">
+                            <td class="name">Course</td>
+                            <td class="description">Description</td>
+                            <td class="total">Price</td>
+                            <td>Delete</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% if not basket_items%}
+                        <tr>
+                            <td>Your basket is empty!</td>
+                        </tr>
+                    {% else %}
+                        {% for item in basket_items %}
+                            <tr>
+                                <td class="cart-description">
+                                    <h4><a href="{% url 'main:language_course' item.course.pk %}">{{ item.course.name }}</a></h4>
+                                </td>
+                                <td class="cart-description">
+                                    <p>Level: {{item.course.languagecourses.level_letter}}{{item.course.languagecourses.level_number}}</p>
+                                    <p>Date: {{item.course.start_date|date:"d.Ny"}} - {{item.course.finish_date|date:"d.Ny"}}</p>
+                                    <p>Time: {{item.course.start_date.time|time:"g:i a"}} - {{item.course.finish_date.time|time:"g:i a"}}</p>
+                                    <p>Place: {{item.course.address}}</p>
+
+                                </td>
+
+                                <td>
+                                    <p class="cart-total-price">{{ item.course.price }} &euro;</p>
+                                </td>
+                                <td class="cart-delete">
+                                    <a class="cart-quantity-delete" href="{% url 'basket:delete' item.pk %}">x</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!--/#cart-items-->
+
+    <div class="total-area">
+        {% include 'basketapp/includes/total.html' %}
+        <div class="buy-cart-btn"><a href="{% url 'basket:index' %}">Update</a></div>
+        <div class="buy-cart-btn"><a href="">Buy</a></div>
+    </div>
+</div>
