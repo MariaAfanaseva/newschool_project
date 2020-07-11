@@ -37,12 +37,12 @@ class BasketAdd(LoginRequiredMixin, View):
 
 
 class BasketDelete(LoginRequiredMixin, View):
-    def get(self, request, pk):
-        basket_item = Basket.objects.filter(user=request.user, id=pk).first()
-        basket_item.delete()
-        basket_items = Basket.objects.filter(user=request.user).all()
-        cart_total_quantity = Basket.get_total_quantity(request.user)
-        context = {'basket_items': basket_items}
-
-        result = render_to_string('basketapp/includes/cart.html', context, request)
-        return JsonResponse({'result': result, 'cart_quantity': cart_total_quantity})
+    def post(self, request, pk):
+        if request.is_ajax:
+            basket_item = Basket.objects.filter(user=request.user, id=pk).first()
+            basket_item.delete()
+            basket_items = Basket.objects.filter(user=request.user).all()
+            total_quantity = Basket.get_total_quantity(request.user)
+            context = {'basket_items': basket_items}
+            result = render_to_string('basketapp/includes/cart.html', context, request)
+            return JsonResponse({'result': result, 'quantity': total_quantity})

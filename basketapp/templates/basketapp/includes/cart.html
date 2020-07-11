@@ -36,8 +36,12 @@
                                 <td>
                                     <p class="cart-total-price">{{ item.course.price }} &euro;</p>
                                 </td>
+
                                 <td class="cart-delete">
-                                    <a class="cart-quantity-delete" href="{% url 'basket:delete' item.pk %}">x</a>
+                                    <form method="POST" >
+                                        {% csrf_token %}
+                                        <a class="cart-quantity-delete" href="{% url 'basket:delete' item.pk %}">x</a>
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}

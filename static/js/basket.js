@@ -1,23 +1,34 @@
 class Basket {
     constructor() {
         this.changeItem = '.cart';
+        this.cart_quantity = '.fa-shopping-cart'
     }
 
     deleteItem() {
         $(document).on('click', '.cart-delete a', (event) => {
-            console.log('ajax');
+            // console.log('ajax');
             event.preventDefault();
             const path = event.target.href;
+            const csrftoken = $("[name=csrfmiddlewaretoken]").val();  // get csrf token
+
+            $.ajaxSetup({  // add csrf token to header ajax request
+            beforeSend: function(xhr, settings) {
+                if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
             $.ajax({
                 url: path,
+                type: 'POST',
                 success: (data) => {
-                    console.log(data);
                     $(this.changeItem).empty();
                     $(this.changeItem).html(data.result);
-                    if (data.cart_quantity > 0) {
-                        $('.fa-shopping-cart').text(data.cart_quantity);
+                    if (data.quantity > 0) {
+                        $(this.cart_quantity).text(data.quantity);
                     } else {
-                         $('.fa-shopping-cart').text('');
+                         $(this.cart_quantity).text('');
                     }
                 }
             });
