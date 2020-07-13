@@ -353,7 +353,7 @@
 	$(window).on("load",function() {
 		/* -- Site Loader */
 		if ( !$("html").is(".ie6, .ie7, .ie8") ) {
-			$("#site-loader").delay(1000).fadeOut("slow");
+			$("#site-loader").delay(20).fadeOut("fast");
 		}
 		else {
 			$("#site-loader").css("display","none");

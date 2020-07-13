@@ -25,7 +25,7 @@
     "language": "English",
     "level_letter": "С",
     "level_number": 1.1,
-    "book": "Great! С1"
+    "book": "Great! С1 for IT"
   },
   {
     "course": "Standart English course",
@@ -35,10 +35,45 @@
     "book": "Great! A1"
   },
   {
-    "course": "Standart course German",
-    "language": "German",
+    "course": "Standart English course A1.1",
+    "language": "English",
     "level_letter": "A",
     "level_number": 1.1,
-    "book": "Netzwerk A1"
+    "book": "Great! A1"
+  },
+  {
+    "course": "Standart English course A2.1",
+    "language": "English",
+    "level_letter": "A",
+    "level_number": 1.1,
+    "book": "Great! A2"
+  },
+  {
+    "course": "Standart English course B1.1",
+    "language": "English",
+    "level_letter": "A",
+    "level_number": 1.1,
+    "book": "Great! B1"
+  },
+  {
+    "course": "Standart English course B2.1",
+    "language": "English",
+    "level_letter": "A",
+    "level_number": 1.1,
+    "book": "Great! B2"
+  },
+  {
+    "course": "Standart English course C1.1",
+    "language": "English",
+    "level_letter": "C",
+    "level_number": 1.1,
+    "book": "Great! C1"
+  },
+  {
+    "course": "Standart English course C1.2",
+    "language": "English",
+    "level_letter": "C",
+    "level_number": 1.1,
+    "book": "Great! C1"
   }
 ]

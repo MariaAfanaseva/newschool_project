@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <!-- PageBanner -->
-	<div class="container-fluid page-banner blog no-padding">
+	<div class="container-fluid page-banner blog no-padding" style="background: url({% static '/images/service-banner.jpg'%});">
 		<div class="section-padding"></div>
 			<div class="container">
 				<div class="banner-content-block">
@@ -51,7 +51,7 @@
 				</div>
 				<a href="#">Filter</a>
 			</div>
-			<div class="row">
+			<div id="teachers-row" class="row">
 				<div class="col-md-9 col-sm-6 col-xs-6 content-area">
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-6 blog-box">
@@ -76,18 +76,17 @@
 					</div>
 
 					<!-- Ow Pagination -->
-					<div class="ow-pagination">
-						<nav>
-							<ul class="pager">
-								<li class="page-prv"><a href="#" title="Previous"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Previous Event</a></li>
-								<li><a href="#"><i class="fa fa-th" aria-hidden="true"></i></a></li>
-								<li class="page-next"><a href="#" title="Next">Next Event<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-							</ul>
-						</nav>
-					</div><!-- Ow Pagination /- -->
+						<div id="teachers-pagination">
+							{% include 'mainapp/includes/pagination.html'%}
+						</div>
+					<!-- Ow Pagination /- -->
+
                 </div>
             </div>
         </div>
     <div class="section-padding"></div>
 	</div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}

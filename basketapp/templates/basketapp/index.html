@@ -1,0 +1,28 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<!-- PageBanner -->
+	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static '/images/about-banner.jpg'%});">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Basket</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>Basket</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+
+	<div class="container-fluid eventlist upcoming-event latest-blog no-padding">
+		<div class="section-padding"></div>
+		{% include 'basketapp/includes/cart.html' %}
+	</div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/basket.js' %}"></script>
+{% endblock %}

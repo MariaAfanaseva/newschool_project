@@ -10,7 +10,7 @@
     "description": "Englisch for adults."
   },
   {
-    "name": "Great! С1",
+    "name": "Great! С1 for IT",
     "author": "Klett",
     "description": "Englisch for IT"
   },
@@ -33,5 +33,20 @@
     "name": "Netzwerk A1",
     "author": "Klett",
     "description": "Arbeitsbuch mit DVD und 2 Audio-CDs"
+  },
+     {
+    "name": "Great! A2",
+    "author": "Klett",
+    "description": "Englisch for adults."
+  },
+     {
+    "name": "Great! B2",
+    "author": "Klett",
+    "description": "Englisch for adults."
+  },
+      {
+    "name": "Great! C1",
+    "author": "Klett",
+    "description": "Englisch for adults."
   }
 ]

@@ -22,19 +22,19 @@ from authapp.models import User
 logger = logging.getLogger(__name__)
 
 
-def send_verify_mail(user):
-    verify_link = reverse('auth:verify', kwargs={'email': user.email,
-                                                 'verification_key': user.userverify.verification_key})
-    title = f'Account Verification {user.email}'
-    message = f'To confirm your account {user.email} on the portal ' \
-        f'{DOMAIN_NAME} follow the link: {DOMAIN_NAME}{verify_link}'
-    return send_mail(title, message, EMAIL_HOST_USER, [user.email], fail_silently=False)
-
-
 class UserRegister(View):
     template_name = 'authapp/register.html'
     template_verify = 'authapp/verification.html'
     register_form = UserRegisterForm
+
+    @staticmethod
+    def _send_verify_mail(user):
+        verify_link = reverse('auth:verify', kwargs={'email': user.email,
+                                                     'verification_key': user.userverify.verification_key})
+        title = f'Account Verification {user.email}'
+        message = f'To confirm your account {user.email} on the portal ' \
+            f'{DOMAIN_NAME} follow the link: {DOMAIN_NAME}{verify_link}'
+        return send_mail(title, message, EMAIL_HOST_USER, [user.email], fail_silently=False)
 
     def get(self, request):
         register_form = self.register_form()
@@ -48,7 +48,7 @@ class UserRegister(View):
         register_form = self.register_form(request.POST)
         if register_form.is_valid():
             new_user = register_form.save()
-            if send_verify_mail(new_user):
+            if self._send_verify_mail(new_user):
                 return render(request, self.template_verify)
         return render(request, self.template_name, {'register_form': register_form})
 

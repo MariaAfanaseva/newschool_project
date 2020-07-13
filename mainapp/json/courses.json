@@ -70,5 +70,77 @@
     "duration": 30,
     "address": "Facebook Way",
     "image": "course_photos/english_it_course.jpg"
+  },
+  {
+    "name": "Standart English course A1.1",
+    "short_desc": "This is the best English language course.",
+    "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
+    "teacher": "Mark",
+    "price": 300,
+    "start_date": "2020-09-27 09:00:00+01:00",
+    "finish_date": "2020-10-28 13:30:00+01:00",
+    "duration": 30,
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
+  },
+   {
+    "name": "Standart English course A2.1",
+    "short_desc": "This is the best English language course.",
+    "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
+    "teacher": "Mark",
+    "price": 300,
+    "start_date": "2020-09-27 09:00:00+01:00",
+    "finish_date": "2020-10-28 13:30:00+01:00",
+    "duration": 30,
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
+  },
+   {
+    "name": "Standart English course B1.1",
+    "short_desc": "This is the best English language course.",
+    "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
+    "teacher": "Mark",
+    "price": 300,
+    "start_date": "2020-09-27 09:00:00+01:00",
+    "finish_date": "2020-10-28 13:30:00+01:00",
+    "duration": 30,
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
+  },
+   {
+    "name": "Standart English course B2.1",
+    "short_desc": "This is the best English language course.",
+    "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
+    "teacher": "Mark",
+    "price": 300,
+    "start_date": "2020-09-27 09:00:00+01:00",
+    "finish_date": "2020-10-28 13:30:00+01:00",
+    "duration": 30,
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
+  },
+   {
+    "name": "Standart English course C1.1",
+    "short_desc": "This is the best English language course.",
+    "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
+    "teacher": "Mark",
+    "price": 300,
+    "start_date": "2020-09-27 09:00:00+01:00",
+    "finish_date": "2020-10-28 13:30:00+01:00",
+    "duration": 30,
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
+  },
+   {
+    "name": "Standart English course C1.2",
+    "short_desc": "This is the best English language course.",
+    "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
+    "teacher": "Mark",
+    "price": 300,
+    "start_date": "2020-09-27 09:00:00+01:00",
+    "finish_date": "2020-10-28 13:30:00+01:00",
+    "duration": 30,
+    "address": "Facebook Way",
+    "image": "course_photos/english_it_course.jpg"
   }
 ]

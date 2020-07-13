@@ -1,0 +1,9 @@
+{% load tags %}
+<div class="cart-data">
+    <div class="cart-total">
+        Total quantity: {{ cart|cart_total_quantity}}
+    </div>
+    <div class="cart-total">
+        Total price: {{ cart|cart_total_price|floatformat }} &euro;
+    </div>
+</div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load tags %}
 <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
@@ -70,15 +71,20 @@
 						</ul>
 					</div><!-- Social /- -->
 
-                    {% if user.is_authenticated %}
                     <div class="col-md-4 col-sm-4 col-xs-6 register">
-						<a href="{% url 'auth:logout' %}">Logout</a>
-					</div>
-                    {% else %}
-					<div class="col-md-4 col-sm-4 col-xs-6 register">
-						<a href="{% url 'auth:login' %}?next={{ request.path }}">Login</a>
-					</div>
-                    {% endif %}
+
+                        {% if user.is_authenticated %}
+                            <a class="register-link" href="{% url 'auth:logout' %}">Logout</a>
+                        {% else %}
+                            <a class="register-link" href="{% url 'auth:login' %}?next={{ request.path }}">Login</a>
+                        {% endif %}
+
+						<a class="shop-cart" href="{% url 'basket:index' %}"><i class="fa fa-shopping-cart">
+                            {% if cart|cart_total_quantity > 0 %}
+                                {{cart|cart_total_quantity}}
+                            {% endif %}
+                        </i></a>
+                    </div>
 
 					<!-- Logo Block -->
 					<div class="col-md-4 col-sm-4 col-xs-12 logo-block">
@@ -213,7 +219,6 @@
         </div><!-- Container /- -->
     </footer><!-- Footer Main /- -->
 {% endblock %}
-{% block js %}
     <!-- JQuery v1.11.3 -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
 
@@ -225,6 +230,7 @@
     <!-- Library - Google Map API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn3Z6i1AYolP3Y2SGis5qhbhRwmxxo1wU"></script>
     <script src="{% static 'js/functions.js' %}"></script>
+{% block js %}
 {% endblock %}
 </body>
 </html>

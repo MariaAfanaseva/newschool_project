@@ -3,7 +3,7 @@
 {% load tags %}
 {% block content %}
 <!--PageBanner-->
-	<div class="container-fluid page-banner event-grid event-list no-padding">
+	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static '/images/blog-banner.jpg'%});">
 		<div class="section-padding"></div>
 			<div class="container">
 				<div class="banner-content-block">
@@ -54,7 +54,7 @@
 	</div><!-- Teacher /- -->
 	<!-- Teacher courses -->
 	<div class="container-fluid our-history our-history-section upcoming-event latest-blog no-padding">
-		<div class="container">
+		<div id="teacher_courses" class="container">
 			<div class="section-header">
 				<span>Current courses with {{teacher}}</span>
 			</div>
@@ -89,7 +89,17 @@
 				    </div>
                 {% endfor %}
 			</div>
+
+			<!-- Ow Pagination -->
+				<div id="single-teacher-pagination">
+					{% include 'mainapp/includes/pagination.html'%}
+				</div>
+			<!-- Ow Pagination /- -->
+
 		</div>
 		<div class="section-padding"></div>
 	</div><!-- Teacher courses /- -->
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}

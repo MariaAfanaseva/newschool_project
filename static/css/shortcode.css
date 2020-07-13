@@ -451,7 +451,7 @@
 .introduction-block {
 	background-color: #ececec;
 	padding: 50px 70px 65px 80px;
-	position: relative;	
+	position: relative;
 	transition: all 1s ease 0s;
 	-webkit-transition: all 1s ease 0s;
 	-moz-transition: all 1s ease 0s;
@@ -461,7 +461,7 @@
 	opacity: 0.9;
 }
 .introduction-section .col-md-12.no-padding::before  {
-	background: url("../images/introduction-overlay.jpg");	
+	background: url("../images/introduction-overlay.jpg");
 	background-size: cover;		
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -571,7 +571,7 @@
 	border: 2px solid #feca16;
 	overflow: hidden;	
 }
-.introduction-block a::after {	
+.introduction-block a::after {
 	position: absolute;
 	content: "";
 	background-color: #feca16;
@@ -690,7 +690,7 @@
 .schedule-block .nav-tabs > li.active > a,
 .schedule-block .nav-tabs > li.active > a:focus,
 .schedule-block .nav-tabs > li.active > a:hover {
-	border: none;	
+	border: none;
 	color: #fff;
 	background-color: #feca16;
 }
@@ -2383,16 +2383,16 @@
 	font-size: 13px;
 	letter-spacing: 0.91px;
 	border: none;
-	padding: 0;
+	/*padding: 0;*/
 	transition: all 1s ease 0s;
 	-webkit-transition: all 1s ease 0s;
 	-moz-transition: all 1s ease 0s;
 	-o-transition: all 1s ease 0s;
 }
-.ow-pagination .pager li > a:hover {
-	background-color: transparent;
-	color: #feca16;
-}
+/*.ow-pagination .pager li > a:hover {*/
+	/*background-color: transparent;*/
+	/*color: #feca16;*/
+/*}*/
 .ow-pagination .pager .fa-th {
 	font-size: 14px;
 }
@@ -2405,6 +2405,13 @@
 .ow-pagination .page-next a i{
 	margin-left: 6px;
 }
+
+.pagination-active{
+	pointer-events: none;
+	cursor: not-allowed;
+	opacity: 0.3;
+}
+
 
 /* -- UpComing Event */
 .upcoming-event.latest-blog .type-post  {
@@ -2508,11 +2515,6 @@
 	font-size: 13px;
 	padding-left: 16px;
 	text-align: left;
-}
-
-.pagination_a {
-	pointer-events: none;
-	opacity: 0.3;
 }
 
 /* -- Our History */
