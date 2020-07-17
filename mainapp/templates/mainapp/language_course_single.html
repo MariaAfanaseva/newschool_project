@@ -139,36 +139,36 @@
 			</div>
 			<div class="row">
                 {% for lang_course in page_obj %}
-				    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <article class="type-post">
-                            <div class="entry-block">
-                                <div class="entry-title">
-                                    <a href="{% url 'main:language_course' lang_course.pk %}" ><h3>{{lang_course.course.name}}</h3></a>
-                                </div>
-                                <div class="entry-meta">
-                                    <div class="post-date">
-                                        <p>{{lang_course.course.start_date|str_month }}<span>
+					<div class="col-md-4 col-sm-6 col-xs-6">
+						<article class="type-post">
+							<div class="entry-block">
+								<div class="entry-title">
+									<a href="{% url 'main:language_course' lang_course.pk %}" ><h3>{{lang_course.course.name}}</h3></a>
+								</div>
+								<div class="entry-meta">
+									<div class="post-date">
+										<p>{{lang_course.course.start_date|str_month }}<span>
 											{{lang_course.start_date.day}}</span></p>
-                                    </div>
-                                    <div class="post-metablock">
-                                        <div class="post-time">
-                                            <span>{{lang_course.course.start_date|date:"d.M"}} -
+									</div>
+									<div class="post-metablock">
+										<div class="post-time">
+											<span>{{lang_course.course.start_date|date:"d.M"}} -
 												{{lang_course.course.finish_date|date:"d.M"}},
 												{{lang_course.course.start_date.time|time:"g:i a"}} -
 												{{lang_course.course.finish_date|time:"g:i a"}}</span>
-									    </div>
-                                        <div class="post-location">
-                                            <span>{{lang_course.course.address}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry-content">
-                                    <p>{{lang_course.course.short_desc}}</p>
-                                </div>
-                                <a href="{% url 'main:language_course' lang_course.course.pk %}" class="learn-more">Learn More</a>
-                            </div>
-                        </article>
-				    </div>
+										</div>
+										<div class="post-location">
+											<span>{{lang_course.course.address}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="entry-content">
+									<p>{{lang_course.course.short_desc}}</p>
+								</div>
+								<a href="{% url 'main:language_course' lang_course.course.pk %}" class="learn-more">Learn More</a>
+							</div>
+						</article>
+					</div>
                 {% endfor %}
 			</div>
 

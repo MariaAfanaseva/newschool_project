@@ -3,7 +3,7 @@
         <ul class="pager">
             {% if page_obj.has_previous %}
                 <li class="page-prv">
-                    <a href="?page={{ page_obj.previous_page_number  }}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <a href="{{ paginator_path }}?page={{ page_obj.previous_page_number  }}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                         {% if request.resolver_match.url_name == 'teachers'%}
                             Previous teachers
                         {% else %}
@@ -27,7 +27,7 @@
 
                 {% if page_obj.number|add:'-3' > 1 %}
                     <li>
-                        <a href="?page=1">1</a>
+                        <a href="{{ paginator_path }}?page=1">1</a>
                     </li>
                     <li>
                         <a class="pagination-active">...</a>
@@ -39,14 +39,14 @@
                     {% if page_obj.number == i %}
 
                         <li>
-                            <a class="pagination-active" href="?page={{ i }}">{{ i }}</a>
+                            <a class="pagination-active" href="{{ paginator_path }}?page={{ i }}">{{ i }}</a>
                         </li>
 
                     {% elif page_obj.number|add:'3' < paginator.num_pages and page_obj.number|add:'-3' > 1 %}
 
                         {% if i|add:'-1' == page_obj.number or i|add:'1' == page_obj.number %}
                             <li>
-                                <a href="?page={{ i }}">{{ i }}</a>
+                                <a href="{{ paginator_path }}?page={{ i }}">{{ i }}</a>
                             </li>
                         {% endif %}
 
@@ -55,14 +55,14 @@
                         {% if page_obj.number|add:'3' >= paginator.num_pages %}
                             {% if i >= page_obj.number|add:'-1' %}
                                 <li>
-                                    <a href="?page={{ i }}">{{ i }}</a>
+                                    <a href="{{ paginator_path }}?page={{ i }}">{{ i }}</a>
                                 </li>
                             {% endif %}
 
                         {% else %}
                             {% if i <= page_obj.number|add:'1' %}
                                 <li>
-                                    <a href="?page={{ i }}">{{ i }}</a>
+                                    <a href="{{ paginator_path }}?page={{ i }}">{{ i }}</a>
                                 </li>
                             {% endif %}
 
@@ -77,18 +77,20 @@
                         <a class="pagination-active">...</a>
                     </li>
                     <li>
-                        <a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a>
+                        <a href="{{ paginator_path }}?page={{ paginator.num_pages }}">
+                            {{ paginator.num_pages }}
+                        </a>
                     </li>
                 {% endif %}
             {% else %}
                 {% for i in paginator.page_range %}
                     {% if page_obj.number == i %}
                         <li>
-                        <a class="pagination-active" href="?page={{ i }}">{{ i }}</a>
+                        <a class="pagination-active" href="{{ paginator_path }}?page={{ i }}">{{ i }}</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="?page={{ i }}">{{ i }}</a>
+                            <a href="{{ paginator_path }}?page={{ i }}">{{ i }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -96,7 +98,7 @@
 
             {% if page_obj.has_next %}
                 <li class="page-next">
-                    <a href="?page={{ page_obj.next_page_number }}">
+                    <a href="{{ paginator_path }}?page={{ page_obj.next_page_number }}">
                         {% if request.resolver_match.url_name == 'teachers'%}
                             Next teachers
                         {% else %}

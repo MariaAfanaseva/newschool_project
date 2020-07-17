@@ -1,0 +1,47 @@
+{% load static %}
+{% load tags %}
+<div id="courses-row" class="row">
+    <div class="col-md-9 col-sm-6 col-xs-6 content-area">
+        {% if not language_courses %}
+            <p>No courses</p>
+        {% else %}
+            {% for lang_course in language_courses %}
+                <article class="type-post">
+                    <div class="entry-cover">
+                        <a href="{% url 'main:language_course' lang_course.pk %}"><img src="{% static 'images/default_img.jpg' %}" alt="history" width="310" height="246"/></a>
+                    </div>
+                    <div class="entry-block">
+                        <div class="entry-title">
+                            <a href="{% url 'main:language_course' lang_course.pk %}"><h3>{{lang_course.course.name}}</h3></a>
+                        </div>
+                        <div class="entry-meta">
+                            <div class="post-date">
+                                <p>{{lang_course.course.start_date | str_month }}<span>
+                                    {{lang_course.course.start_date.day}}</span></p>
+                            </div>
+                            <div class="post-metablock">
+                                <div class="post-time">
+                                    <span>{{lang_course.course.start_date|date:"d.M"}} - {{lang_course.course.finish_date|date:"d.M"}}, {{lang_course.course.start_date.time|time:"g:i a"}} - {{lang_course.course.finish_date|time:"g:i a"}}</span>
+                                </div>
+                                <div class="post-location">
+                                    <span>{{lang_course.course.address}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="entry-content">
+                            <p>{{lang_course.course.short_desc}}</p>
+                        </div>
+                        <a href="{% url 'main:language_course' lang_course.pk %}" class="learn-more">Learn More</a>
+                    </div>
+                </article>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Ow Pagination -->
+            <div id="courses-pagination">
+                {% include 'mainapp/includes/pagination.html'%}
+            </div>
+        <!-- Ow Pagination /- -->
+
+    </div>
+</div>

@@ -21,7 +21,7 @@ class Basket {
 
             $.ajax({
                 url: path,
-                type: 'POST',
+                type: 'DELETE',
                 success: (data) => {
                     $(this.changeItem).empty();
                     $(this.changeItem).html(data.result);

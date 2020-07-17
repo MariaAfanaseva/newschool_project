@@ -3,6 +3,9 @@ from django.db import models
 
 
 class Teachers(models.Model):
+    class Meta:
+        ordering = ['name']
+
     name = models.CharField(verbose_name='teacher name', max_length=128)
     surname = models.CharField(verbose_name='teacher surname', max_length=128)
     dob = models.DateField(verbose_name='teacher date of birth', null=True)
@@ -26,6 +29,14 @@ class Addresses(models.Model):
 
     def __str__(self):
         return f'{self.country}, {self.city}, {self.street}, {self.house_number}'
+
+    @staticmethod
+    def get_address_city():
+        return Addresses.objects.values('city').distinct().order_by('city')
+
+    @staticmethod
+    def get_address_country():
+        return Addresses.objects.values('country').distinct().order_by('country')
 
 
 class Courses(models.Model):
@@ -66,7 +77,7 @@ class Languages(models.Model):
 
     @staticmethod
     def get_languages():
-        return Languages.objects.all()
+        return Languages.objects.all().order_by()
 
 
 class LanguageCourses(models.Model):
@@ -82,4 +93,12 @@ class LanguageCourses(models.Model):
     @staticmethod
     def get_courses(language_pk):
         return LanguageCourses.objects.filter(language=language_pk). \
-            filter(course__start_date__gte=datetime.datetime.now())
+            filter(course__start_date__gte=datetime.datetime.now()).order_by().select_related()
+
+    @staticmethod
+    def get_level_letter():
+        return LanguageCourses.objects.values('level_letter').distinct().order_by('level_letter')
+
+    @staticmethod
+    def get_number_level():
+        return LanguageCourses.objects.values('level_number').distinct().order_by('level_number')

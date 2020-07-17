@@ -1,38 +1,31 @@
 [
   {
-    "course": "Intensive course German",
+    "course": "Intensive course German B1.1",
     "language": "German",
     "level_letter": "B",
     "level_number": 1.1,
     "book": "Netzwerk B1, Netzwerk B1.1 Arbeitsbuch"
   },
    {
-    "course": "Intensive course English",
+    "course": "Intensive course English B1.2",
     "language": "English",
     "level_letter": "B",
     "level_number": 1.2,
     "book": "Great! B1"
   },
    {
-    "course": "Intensive course Italian",
+    "course": "Intensive course Italian B1.1",
     "language": "Italian",
     "level_letter": "B",
     "level_number": "1.1",
     "book": "Con piacere B1"
   },
    {
-    "course": "English course for IT",
+    "course": "English course for IT C1.1",
     "language": "English",
-    "level_letter": "С",
+    "level_letter": "C",
     "level_number": 1.1,
     "book": "Great! С1 for IT"
-  },
-  {
-    "course": "Standart English course",
-    "language": "English",
-    "level_letter": "A",
-    "level_number": 1.1,
-    "book": "Great! A1"
   },
   {
     "course": "Standart English course A1.1",
@@ -42,24 +35,31 @@
     "book": "Great! A1"
   },
   {
+    "course": "Standart English course A1.2",
+    "language": "English",
+    "level_letter": "A",
+    "level_number": 1.2,
+    "book": "Great! A1"
+  },
+  {
     "course": "Standart English course A2.1",
     "language": "English",
     "level_letter": "A",
-    "level_number": 1.1,
+    "level_number": 2.1,
     "book": "Great! A2"
   },
   {
     "course": "Standart English course B1.1",
     "language": "English",
-    "level_letter": "A",
+    "level_letter": "B",
     "level_number": 1.1,
     "book": "Great! B1"
   },
   {
     "course": "Standart English course B2.1",
     "language": "English",
-    "level_letter": "A",
-    "level_number": 1.1,
+    "level_letter": "B",
+    "level_number": 2.1,
     "book": "Great! B2"
   },
   {
@@ -73,7 +73,14 @@
     "course": "Standart English course C1.2",
     "language": "English",
     "level_letter": "C",
-    "level_number": 1.1,
+    "level_number": 1.2,
     "book": "Great! C1"
+  },
+  {
+    "course": "Standart course German A1.1",
+    "language": "German",
+    "level_letter": "A",
+    "level_number": 1.1,
+    "book": "Netzwerk B1, Netzwerk B1.1 Arbeitsbuch"
   }
 ]

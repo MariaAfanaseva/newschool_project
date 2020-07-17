@@ -37,7 +37,7 @@ class BasketAdd(LoginRequiredMixin, View):
 
 
 class BasketDelete(LoginRequiredMixin, View):
-    def post(self, request, pk):
+    def delete(self, request, pk):
         if request.is_ajax:
             basket_item = Basket.objects.filter(user=request.user, id=pk).first()
             basket_item.delete()

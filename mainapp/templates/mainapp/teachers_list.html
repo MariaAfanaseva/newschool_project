@@ -25,64 +25,44 @@
             <div class="section-header">
 				<h3>Our teaches</h3>
 			</div>
-			<div class="event-categories">
-				<div class="event-select-option">
-					<select class="selectpicker">
-						<option data-icon="icon-Tag">Level</option>
-						<option>A</option>
-						<option>B</option>
-						<option>C</option>
-					</select>
-				</div>
-				<div class="event-select-option">
-					<select class="selectpicker">
-						<option data-icon="icon-Tag">Number level</option>
-						<option>1.1</option>
-						<option>1.2</option>
-					</select>
-				</div>
-				<div class="event-select-option">
-					<select class="selectpicker">
-						<option data-icon="icon-WorldWide">Location</option>
-						<option>German</option>
-						<option>Italy</option>
-						<option>USA</option>
-					</select>
-				</div>
-				<a href="#">Filter</a>
-			</div>
-			<div id="teachers-row" class="row">
-				<div class="col-md-9 col-sm-6 col-xs-6 content-area">
-					<div class="row">
-						<div class="col-md-12 col-sm-12 col-xs-6 blog-box">
-                            {% for teacher in teachers %}
-                                <article class="type-post">
-                                    <div class="entry-cover">
-                                        <a href="{% url 'main:teacher' teacher.pk %}"><img src="{{MEDIA_URL}}{{teacher.photo}}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
-                                    </div>
-                                    <div class="entry-block">
-										<div class="entry-meta"></div>
-                                        <div class="entry-title">
-                                            <a href="{% url 'main:teacher' teacher.pk %}"><h3>{{teacher.name}} {{teacher.surname}}</h3></a>
-                                        </div>
-                                        <div class="entry-content">
-                                            <p>{{teacher.introduction}}</p>
-                                        </div>
-                                        <a href="{% url 'main:teacher' teacher.pk %}" class="learn-more">Learn More</a>
-                                    </div>
-                                </article>
-                            {% endfor %}
-						</div>
+
+			<form class="filter-form" action="" method="get">
+				<div class="event-categories">
+					<div class="event-select-option">
+						<select name="country" class="selectpicker">
+							<option data-icon="icon-Tag" value="">Country</option>
+							{% for country in view.get_country %}
+								<option value="{{ country.country }}">
+									{{ country.country }}
+								</option>
+							{% endfor %}
+						</select>
 					</div>
+					<div class="event-select-option">
+						<select name="city" class="selectpicker">
+							<option data-icon="icon-Tag" value="">City</option>
+							{% for city in view.get_city %}
+								<option value="{{ city.city }}">
+									{{ city.city }}
+								</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="event-select-option">
+						<select name="language" class="selectpicker">
+							<option data-icon="icon-WorldWide" value="">Language</option>
+							{% for language in view.get_language %}
+								<option value="{{ language }}">
+									{{ language }}
+								</option>
+							{% endfor %}
+						</select>
+					</div>
+					<a id="filter-teachers-btn" href="{% url 'main:filter_teachers' %}?page=1">Filter</a>
+				</div>
+			</form>
 
-					<!-- Ow Pagination -->
-						<div id="teachers-pagination">
-							{% include 'mainapp/includes/pagination.html'%}
-						</div>
-					<!-- Ow Pagination /- -->
-
-                </div>
-            </div>
+			{% include 'mainapp/includes/teachers_list.html' %}
         </div>
     <div class="section-padding"></div>
 	</div>

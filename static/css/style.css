@@ -1041,6 +1041,7 @@ a {
 	padding-left: 4px;
 }
 
+
 /* - ContactUs Widget */
 .footer-main .widget_contactus {
 	padding-left: 43px;
@@ -1231,6 +1232,10 @@ a {
 	padding-right: 0;
 }
 
+.footer-main .footer-position {
+    display: flex;
+    justify-content: space-around;
+}
 
 /* ========================================================================== */
 /* ========================================================================== */
