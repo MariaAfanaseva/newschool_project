@@ -1,6 +1,7 @@
 import json
 import os
 from django.core.management.base import BaseCommand
+from authapp.models import User
 from mainapp.models import (Teachers, Addresses, Books,
                             Courses, LanguageCourses, Languages)
 
@@ -100,3 +101,8 @@ class Command(BaseCommand):
         save_languages()
         save_courses()
         save_language_courses()
+
+        print('Recreate manager: ', end='')
+        User.objects.all().delete()
+        User.objects.create_superuser('admin@admin.com', 'Admin', 'admin')
+        print('Done')

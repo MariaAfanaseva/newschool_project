@@ -863,6 +863,18 @@ a {
     text-transform: capitalize;
 }
 
+.cart-title p{
+    font-size: 18px;
+	letter-spacing: 2.88px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 600;
+	font-style: italic;
+	color: #feca16;
+	line-height: 28px;
+	text-transform: capitalize;
+    margin-top: 10px;
+}
+
 #cart-items .cart-info .table.table-condensed tr {
     border-bottom: 1px solid#F7F7F0
 }
