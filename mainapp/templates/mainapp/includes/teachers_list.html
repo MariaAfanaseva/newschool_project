@@ -9,7 +9,10 @@
                     {% for teacher in teachers %}
                         <article class="type-post">
                             <div class="entry-cover">
-                                <a href="{% url 'main:teacher' teacher.pk %}"><img src="{{MEDIA_URL}}{{teacher.photo}}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
+                                <a href="{% url 'main:teacher' teacher.pk %}">
+                                    <img src="{% if teacher.photo %}{{MEDIA_URL}}{{teacher.photo}}
+                                              {% else %} {% static 'images/default_teacher_img.jpg' %}
+                                              {% endif %}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
                             </div>
                             <div class="entry-block">
                                 <div class="entry-meta"></div>

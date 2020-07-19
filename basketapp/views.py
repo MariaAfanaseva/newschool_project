@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from mainapp.models import Languages, Courses
+from mainapp.models import Language, Course
 from basketapp.models import Basket
 
 
@@ -16,7 +16,7 @@ class BasketView(LoginRequiredMixin, View):
 
         context = {
             'title': 'Basket',
-            'languages': Languages.get_languages(),
+            'languages': Language.get_languages(),
             'basket_items': basket_items,
         }
         return render(request, self.template_name, context)
@@ -24,7 +24,7 @@ class BasketView(LoginRequiredMixin, View):
 
 class BasketAdd(LoginRequiredMixin, View):
     def get(self, request, pk):
-        course = get_object_or_404(Courses, pk=pk)
+        course = get_object_or_404(Course, pk=pk)
         basket_course = Basket.objects.filter(user=request.user, course=course).first()
 
         if not basket_course:
