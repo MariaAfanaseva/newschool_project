@@ -123,7 +123,8 @@ class LanguageCourse(models.Model):
     @staticmethod
     def get_courses(language_pk):
         return LanguageCourse.objects.filter(language=language_pk). \
-            filter(course__start_date__gte=datetime.datetime.now()).order_by().select_related()
+            filter(course__start_date__gte=datetime.datetime.now()).\
+            order_by('level_letter', 'level_number').select_related()
 
     @staticmethod
     def get_level_letter():

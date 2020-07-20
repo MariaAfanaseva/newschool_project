@@ -9,7 +9,9 @@
 					<div class="{% if forloop.counter == 1 %}item active
 								{% else %}item
 								{% endif %}">
-						<img src="{{MEDIA_URL}}{{course.image}}" alt="slide2" width="1920" height="770"/>
+						<img src="{% if not course.image %}{% static 'images/default_slider_img.jpg' %}
+									{% else %}{{MEDIA_URL}}{{course.image}}
+									{% endif %}" alt="slide2" width="1920" height="770"/>
 						<div class="carousel-caption">
 							<div class="container">
 								<div class="col-md-5 col-sm-6 col-xs-9 pull-right">

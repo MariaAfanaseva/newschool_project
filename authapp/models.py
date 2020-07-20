@@ -12,7 +12,7 @@ def get_verification_key_time():
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, name, password):
         if not email:
             raise ValueError('The Email must be set.')
 
@@ -59,7 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     @property
-    def get_username(self):
+    def get_short_name(self):
         return self.name
 
 

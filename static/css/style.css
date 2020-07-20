@@ -876,7 +876,7 @@ a {
 }
 
 #cart-items .cart-info .table.table-condensed tr {
-    border-bottom: 1px solid#F7F7F0
+    border-bottom: 1px solid #ddd
 }
 
 #cart-items .cart-info .table.table-condensed tr:last-child {
