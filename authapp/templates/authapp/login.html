@@ -8,6 +8,7 @@
                     <div class="signin-image">
                         <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
                         <a href="{% url 'auth:register' %}" class="signup-image-link">Create an account</a>
+                        <a href="{% url 'main:index' %}" class="signup-image-link">Home</a>
                     </div>
 
                     <div class="signin-form">
@@ -43,7 +44,9 @@
                                 <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                             </ul>
                         </div>
-                        <div><a href="{% url 'auth:password_reset' %}" class="forgot-password-link">Forgot password</a></div>
+                        <div>
+                            <a href="{% url 'auth:password_reset' %}" class="forgot-password-link">Forgot password</a>
+                        </div>
                     </div>
                 </div>
             </div>
