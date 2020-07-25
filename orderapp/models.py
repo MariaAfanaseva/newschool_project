@@ -10,6 +10,7 @@ class PaymentPayPal(models.Model):
     payer_email = models.CharField(max_length=255, verbose_name='payer email')
     payer_name = models.CharField(max_length=128, verbose_name='payer name')
     payer_surname = models.CharField(max_length=128, verbose_name='payer surname')
+    total_price = models.FloatField(verbose_name='total price', default=0)
 
     def __str__(self):
         return self.payer_email
@@ -21,8 +22,8 @@ class Order(models.Model):
                              blank=True, null=True)
     courses = models.ManyToManyField(Course, verbose_name='courses')
     created = models.DateTimeField(auto_now_add=True)
-    payment_pay_pal = models.OneToOneField(PaymentPayPal, on_delete=models.CASCADE,
-                                           blank=True, null=True)
+    payment = models.OneToOneField(PaymentPayPal, on_delete=models.CASCADE,
+                                   blank=True, null=True)
 
     def __str__(self):
         return self.user.email

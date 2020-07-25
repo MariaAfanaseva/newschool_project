@@ -25,9 +25,14 @@ function changeTotal() {
     }
 }
 
+function getTotalPrice() {
+    return $( '#total_price' ).attr( "data-price");
+}
+
 function completeOrder(details) {
     const data = {
         'order_id': details.id,
+        'total_price': getTotalPrice(),
         'payment_time': details.create_time,
         'status': details.status,
         'payer_email': details.payer.email_address,
@@ -68,11 +73,10 @@ function payPal() {
 
         // Set up the transaction
         createOrder: function(data, actions) {
-            let totalPrice = $( '#total_price' ).attr( "data-price");
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: "0.1"
+                        value: getTotalPrice()
                     }
                 }]
             });

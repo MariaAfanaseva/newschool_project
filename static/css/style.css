@@ -832,6 +832,7 @@ a {
 
 #cart-items .cart-info {
     border: 1px solid #E6E4DF;
+    margin-bottom: 100px;
 }
 
 #cart-items .cart-info .cart-menu {

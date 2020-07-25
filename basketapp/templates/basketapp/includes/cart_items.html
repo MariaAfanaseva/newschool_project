@@ -22,11 +22,10 @@
                                 <h4><a href="{% url 'main:language_course' item.course.pk %}">{{ item.course.name }}</a></h4>
                             </td>
                             <td class="cart-description">
-                                <p>Level: {{item.course.languagecourses.level_letter}}{{item.course.languagecourses.level_number}}</p>
+                                <p>Level: {{item.course.languagecourse.level_letter}}{{item.course.languagecourse.level_number}}</p>
                                 <p>Date: {{item.course.start_date|date:"d.Ny"}} - {{item.course.finish_date|date:"d.Ny"}}</p>
                                 <p>Time: {{item.course.start_date.time|time:"g:i a"}} - {{item.course.finish_date.time|time:"g:i a"}}</p>
                                 <p>Place: {{item.course.address}}</p>
-
                             </td>
 
                             <td>

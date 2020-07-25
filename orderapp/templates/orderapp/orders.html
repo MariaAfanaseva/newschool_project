@@ -1,0 +1,86 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+<!-- PageBanner -->
+	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static '/images/about-banner.jpg'%});">
+		<div class="section-padding"></div>
+			<div class="container">
+				<div class="banner-content-block">
+					<div class="banner-content">
+						<h3>Orders</h3>
+						<ol class="breadcrumb">
+							<li><a href="{% url 'main:index' %}">Home</a></li>
+							<li>Orders</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		<div class="section-padding"></div>
+	</div><!-- PageBanner /- -->
+
+	<div class="container-fluid eventlist upcoming-event latest-blog no-padding">
+		<div class="section-padding"></div>
+
+        <div class="container cart">
+            <div class="cart-title">
+                <span>Your orders</span>
+                <p>{{ user.get_short_name }}</p>
+            </div>
+            <div id="cart-items">
+                <div class="container">
+                    <div class="table-responsive cart-info">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr class="cart-menu">
+                                    <td>Order ID</td>
+                                    <td>Course</td>
+                                    <td>Description</td>
+                                    <td>Payment time</td>
+                                    <td>Total price</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% if not orders%}
+                                <tr>
+                                    <td>You have not orders!</td>
+                                </tr>
+                            {% else %}
+                                {% for item in orders %}
+                                    <tr>
+                                        <td class="cart-description">
+                                            <p>{{ item.pk }}</p>
+                                        </td>
+                                        <td class="cart-description">
+                                            {% for course in item.courses.all %}
+                                                <h4>
+                                                    <a href="{% url 'main:language_course' course.pk %}">{{course.name}}</a>
+                                                </h4>
+
+                                        {% endfor %}
+                                        </td>
+                                        <td class="cart-description">
+                                            {% for course in item.courses.all %}
+                                                <p>Level: {{course.languagecourse.level_letter}}{{course.languagecourse.level_number}}</p>
+                                                <p>Date: {{course.start_date|date:"d.Ny"}} - {{course.finish_date|date:"d.Ny"}}</p>
+                                                <p>Time: {{course.start_date.time|time:"g:i a"}} - {{course.finish_date.time|time:"g:i a"}}</p>
+                                                <p>Place: {{course.address}}</p>
+                                                <br>
+                                            {% endfor %}
+                                        </td>
+                                        <td class="cart-description">
+                                            <p>{{ item.payment.payment_time }}</p>
+                                        </td>
+                                        <td class="cart-description">
+                                            <p>{{ item.payment.total_price }} &euro;</p>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!--/#cart-items-->
+        </div>
+	</div>
+{% endblock %}
