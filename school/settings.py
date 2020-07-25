@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
+    'orderapp.apps.OrderappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -175,3 +176,5 @@ LOGGING = {
         },
     },
 }
+
+CLIENT_ID = config.get('paypal', 'CLIENT_ID')

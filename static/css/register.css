@@ -276,23 +276,34 @@ figure {
 
 .form-submit {
   display: inline-block;
-  background: #6dabe4;
+  background: #feca16;
   color: #fff;
   border-bottom: none;
   width: auto;
   padding: 15px 39px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
   margin-top: 25px;
-  cursor: pointer; }
-  .form-submit:hover {
-    background: #4292dc; }
+  cursor: pointer;
+  margin-right: 10px;
+}
 
-.rm_underline {
-  text-decoration: none;
+.form-button a{
+    display: inline-block;
+    background: #feca16;
+    color: #fff;
+    border-bottom: none;
+    width: auto;
+    padding: 14px 42px;
+    margin-top: 25px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.form-submit:hover, .form-button a:hover {
+  color: #0b0b0b;
+}
+
+.form-submit:active{
+  border-bottom: none;
 }
 
 #signin {
@@ -303,6 +314,7 @@ figure {
   color: #222;
   display: block;
   text-align: center;
+  margin-top: 5px;
 }
 
 .forgot-password-link {
@@ -321,7 +333,7 @@ figure {
 
 .forgot-password-link:hover,.reset-password-link:hover,
 .signup-image-link:hover {
-  color: #6dabe4;
+  color: #feca16;
   text-decoration: underline;
 }
 
