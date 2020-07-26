@@ -14,7 +14,7 @@ class BasketView(LoginRequiredMixin, View):
     login_url = 'auth:login'
 
     def get(self, request):
-        basket_items = Basket.objects.filter(user=request.user)
+        basket_items = Basket.get_items(request)
         client_id = settings.CLIENT_ID
 
         context = {
@@ -31,14 +31,15 @@ class BasketAdd(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         course = get_object_or_404(Course, pk=pk)
-        basket_course = Basket.objects.filter(user=request.user, course=course).first()
+        if course.count > 0:
+            basket_course = Basket.objects.filter(user=request.user, course=course).first()
 
-        if not basket_course:
-            basket_course = Basket(user=request.user, course=course)
+            if not basket_course:
+                basket_course = Basket(user=request.user, course=course)
 
-        basket_course.save()
+            basket_course.save()
 
-        return HttpResponseRedirect(reverse('basket:index'))
+            return HttpResponseRedirect(reverse('basket:index'))
 
 
 class BasketDelete(LoginRequiredMixin, View):
@@ -48,7 +49,7 @@ class BasketDelete(LoginRequiredMixin, View):
         if request.is_ajax:
             basket_item = Basket.objects.filter(user=request.user, id=pk).first()
             basket_item.delete()
-            basket_items = Basket.objects.filter(user=request.user).all()
+            basket_items = Basket.get_items(request)
             context = {'basket_items': basket_items}
             result = render_to_string('basketapp/includes/cart.html', context, request)
             return JsonResponse({'result': result})

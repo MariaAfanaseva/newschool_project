@@ -9,7 +9,8 @@
     "finish_date": "2020-09-01 13:00:00+01:00",
     "duration": 30,
     "address": "Marienplatz",
-    "image": "course_photos/german_course.jpg"
+    "image": "course_photos/german_course.jpg",
+    "count": 30
   },
     {
     "name": "Intensive course English B1.2",
@@ -21,7 +22,8 @@
     "finish_date": "2020-09-16 12:00:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_course.jpg"
+    "image": "course_photos/english_course.jpg",
+    "count": 30
   },
     {
     "name": "Intensive course Italian B1.1",
@@ -33,7 +35,8 @@
     "finish_date": "2020-09-21 14:00:00+01:00",
     "duration": 30,
     "address": "Via Borromei",
-    "image": "course_photos/italian_course.jpg"
+    "image": "course_photos/italian_course.jpg",
+    "count": 30
   },
   {
     "name": "English course for IT C1.1",
@@ -45,7 +48,8 @@
     "finish_date": "2020-09-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
   {
     "name": "Standart course German A1.1",
@@ -57,7 +61,8 @@
     "finish_date": "2020-09-30 13:00:00+01:00",
     "duration": 30,
     "address": "Marienplatz",
-    "image": "course_photos/german_course.jpg"
+    "image": "course_photos/german_course.jpg",
+    "count": 30
   },
   {
     "name": "Standart English course A1.2",
@@ -69,7 +74,8 @@
     "finish_date": "2020-09-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
   {
     "name": "Standart English course A1.1",
@@ -81,7 +87,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course A2.1",
@@ -93,7 +100,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course B1.1",
@@ -105,7 +113,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course B2.1",
@@ -117,7 +126,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course C1.1",
@@ -129,7 +139,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course C1.2",
@@ -141,6 +152,7 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   }
 ]

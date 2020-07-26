@@ -8,7 +8,50 @@
     <div class="total-area">
         {% include 'basketapp/includes/total.html' %}
         {% if cart|cart_total_price > 0 %}
-            <div id="paypal-button-container" data-path="{% url 'order:create' %}"></div>
+            <div id="paypal-button-container" data-success="{% url 'order:create' %}"></div>
         {% endif %}
     </div>
 </div>
+<script id="pay-pal">
+    const totalPrice = '{{cart|cart_total_price}}';
+
+    function payPal() {
+
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            style: {
+                size: 'large',
+                color: 'gold',
+                shape: 'rect',
+                label: 'pay'
+            },
+
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalPrice,
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                $("#site-loader").css("display","block");
+                return actions.order.capture().then(function(details) {
+                    if (details.status === 'COMPLETED') {
+                        completeOrder(details);
+                    }
+                    else {
+                        alert("Your order wasn't paid! Something was wrong!");
+                    }
+                });
+            }
+        }).render('#paypal-button-container');
+    }
+
+</script>

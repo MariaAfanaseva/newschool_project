@@ -15,12 +15,12 @@ class Teacher(models.Model):
     introduction = models.TextField(verbose_name='teacher introduction text', blank=True,
                                     help_text='Short text from teacher')
     about_teacher = models.TextField(verbose_name='about teacher', blank=True)
-    photo = models.ImageField(verbose_name='teacher photo', blank=True)
+    photo = models.ImageField(upload_to='teacher_photos', verbose_name='teacher photo', blank=True)
 
     def __str__(self):
         return f'{self.name} {self.surname}'
 
-    def get_absolute_url(self):
+    def get_absolute_url(self):  # for admin
         """
         Returns the url to access a particular instance of MyModelName.
         """
@@ -71,7 +71,8 @@ class Course(models.Model):
     address = models.ForeignKey(Address, models.SET_NULL,
                                 blank=True, null=True,
                                 verbose_name='course address')
-    image = models.ImageField(verbose_name='course image', blank=True)
+    image = models.ImageField(upload_to='course_photos', verbose_name='course image', blank=True)
+    count = models.PositiveIntegerField(verbose_name='number of seats', default=0)
 
     def __str__(self):
         return f'{self.name}'

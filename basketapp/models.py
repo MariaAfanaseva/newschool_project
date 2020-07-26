@@ -16,3 +16,13 @@ class Basket(models.Model):
     def get_total_quantity(user):
         cart = Basket.objects.filter(user=user)
         return len(cart)
+
+    @staticmethod
+    def get_items(request):
+        items = []
+        for item in Basket.objects.filter(user=request.user).all():
+            if item.course.count == 0:
+                item.delete()
+            else:
+                items.append(item)
+        return items

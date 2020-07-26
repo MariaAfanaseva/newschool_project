@@ -25,22 +25,18 @@ function changeTotal() {
     }
 }
 
-function getTotalPrice() {
-    return $( '#total_price' ).attr( "data-price");
-}
-
 function completeOrder(details) {
     const data = {
         'order_id': details.id,
-        'total_price': getTotalPrice(),
         'payment_time': details.create_time,
         'status': details.status,
         'payer_email': details.payer.email_address,
         'payer_name': details.payer.name.given_name,
         'payer_surname': details.payer.name.surname,
     };
+
     const csrftoken = this.getCookie('csrftoken');
-    const path = $('#paypal-button-container').data("path");
+    const path = $('#paypal-button-container').data("success");
     $.ajax({
         url: path,
         type: 'POST',
@@ -58,43 +54,10 @@ function completeOrder(details) {
     });
 }
 
-function payPal() {
-
-    // Render the PayPal button into #paypal-button-container
-    paypal.Buttons({
-
-        style: {
-            size: 'large',
-            color: 'gold',
-            shape: 'rect',
-            label: 'pay'
-        },
-
-
-        // Set up the transaction
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: getTotalPrice()
-                    }
-                }]
-            });
-        },
-
-        // Finalize the transaction
-        onApprove: function(data, actions) {
-            $("#site-loader").css("display","block");
-            return actions.order.capture().then(function(details) {
-                if (details.status === 'COMPLETED') {
-                    completeOrder(details);
-                }
-                else {
-                    alert("Your order wasn't paid! Something was wrong!");
-                }
-            });
-        }
-    }).render('#paypal-button-container');
+function renderPayPalButton() {
+    if (changeTotal()) {
+        payPal();
+    }
 }
 
 class Basket {
@@ -103,7 +66,7 @@ class Basket {
     }
 
     deleteItem() {
-        $(document).on('click', '.cart-delete a', (event) => {
+        $(document).off('click').on('click', '.cart-delete a', (event) => {
             event.preventDefault();
             const path = event.target.href;
             const csrftoken = $("[name=csrfmiddlewaretoken]").val();  // get csrf token
@@ -121,19 +84,16 @@ class Basket {
                 type: 'DELETE',
                 success: (data) => {
                     $(this.changeItem).empty();
+                    $('#pay-pal').remove();
                     $(this.changeItem).html(data.result);
-                    if (changeTotal()) {
-                        payPal();
-                    }
+                    renderPayPalButton();
                 }
             });
         });
     }
 }
 
-if (changeTotal()) {
-    payPal();
-}
+renderPayPalButton();
 
 const cart = new Basket();
 
