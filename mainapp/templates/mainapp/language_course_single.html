@@ -2,6 +2,7 @@
 {% load static %}
 {% load tags %}
 {% block content %}
+{% load tz %}
 	<!-- PageBanner -->
 	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static '/images/error-banner.jpg'%});">
 		<div class="section-padding"></div>
@@ -46,7 +47,8 @@
 									</div>
 									<div class="post-time">
 										<span class="icon icon-Time"></span>
-										<span>{{current_course.course.start_date.time|time:"g:i a"}} - {{current_course.course.finish_date|time:"g:i a"}}</span>
+										<span>{{current_course.course.start_date|localtime|time:"g:i a"}} -
+											{{current_course.course.finish_date|localtime|time:"g:i a"}}</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-Tag"></span>

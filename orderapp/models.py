@@ -22,7 +22,7 @@ class Order(models.Model):
     courses = models.ManyToManyField(Course, verbose_name='courses')
     created = models.DateTimeField(auto_now_add=True)
     payment = models.OneToOneField(PaymentPayPal, on_delete=models.CASCADE,
-                                   blank=True, null=True)
+                                   blank=True, null=True, related_name="payment")
     total_price = models.FloatField(verbose_name='total price', default=0)
 
     def __str__(self):

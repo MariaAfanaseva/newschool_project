@@ -134,11 +134,10 @@ class FilterCoursesView(CoursesFilter, ListView):
             courses = courses.filter(level_number=keys['level_number'])
         if keys['city']:
             courses = courses.filter(course__address__city=str(keys['city']))
-        return courses
+        return courses.order_by('course__name')
 
     def get(self, request, *args, **kwargs):
         courses = self._filter_courses(request, **kwargs)
-        print(courses)
 
         paginator = Paginator(courses, 2)
         page_number = request.GET.get('page')
@@ -168,7 +167,7 @@ class FilterTeachersView(TeachersFilter, ListView):
         if keys['language']:
             teachers = teachers.filter(course__languagecourse__language__name=keys['language'])\
                 .distinct()
-        return teachers
+        return teachers.order_by('name')
 
     def get(self, request, *args, **kwargs):
         teachers = self._filter_teachers(request, **kwargs)

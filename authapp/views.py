@@ -137,7 +137,6 @@ class UserProfileView(LoginRequiredMixin, View):
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()  # signal from user save user profile
-            print(request.POST.keys())
             if 'next' in request.POST.keys():
                 return HttpResponseRedirect(request.POST['next'])
             else:

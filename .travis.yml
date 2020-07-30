@@ -4,11 +4,11 @@ python:
   - "3.8"
 
 env:
-  - DJANGO=2.2.12
+  - DJANGO=3.8
   - postgresql=12.2
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r requirements/dev.txt
 
 script:
   - flake8 ./ --max-line-length=130 --exclude=migrations --max-complexity 10

@@ -284,6 +284,7 @@ figure {
   margin-top: 25px;
   cursor: pointer;
   margin-right: 10px;
+  outline:none;
 }
 
 .form-button a{
@@ -302,8 +303,10 @@ figure {
   color: #0b0b0b;
 }
 
-.form-submit:active{
-  border-bottom: none;
+.form-submit:focus{
+    outline:none;
+    border: none;
+
 }
 
 #signin {

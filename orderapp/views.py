@@ -25,7 +25,7 @@ class CreateOrderView(View):
                 if count > 0:
                     item.course.count = count - 1
                     item.course.save()
-                    order.courses.add(item.course)
+                order.courses.add(item.course)
 
             courses.delete()
             order.total_price = total_price
@@ -36,9 +36,12 @@ class CreateOrderView(View):
 
 
 class OrderListView(ListView):
-    model = Order
     template_name = 'orderapp/orders.html'
     context_object_name = 'orders'
+
+    def get_queryset(self):
+        orders = Order.objects.filter(user=self.request.user).order_by('-created')
+        return orders
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

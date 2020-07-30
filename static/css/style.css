@@ -565,7 +565,6 @@ a {
 	font-family: 'Myriad Pro Regular';
 	font-style: normal;
 	font-weight: normal;
-	src: local('fonts/Myriad Pro Regular'), url('fonts/MYRIADPRO-REGULAR.woff') format('woff');
 }
 
 /* ## Header */
