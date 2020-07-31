@@ -1,7 +1,8 @@
 from django.urls import path
 from mainapp.views import (LanguageCoursesListView,
                            IndexListView, LanguageCourseView,
-                           TeachersListView, TeacherView)
+                           TeachersListView, TeacherView,
+                           FilterCoursesView, FilterTeachersView)
 
 app_name = 'mainapp'
 
@@ -15,4 +16,8 @@ urlpatterns = [
          name='teachers'),
     path('teacher/<int:pk>/', TeacherView.as_view(),
          name='teacher'),
+    path('filter_courses/<int:pk>/', FilterCoursesView.as_view(),
+         name="filter_courses"),
+    path('filter_teachers/', FilterTeachersView.as_view(),
+         name="filter_teachers"),
 ]

@@ -19,7 +19,4 @@ def cart_total_price(cart):
 
 @register.filter
 def cart_total_quantity(cart):
-    if len(cart) == 0:
-        return 0
-    else:
-        return len(cart)
+    return len(cart)

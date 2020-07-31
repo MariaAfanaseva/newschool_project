@@ -1,12 +1,12 @@
 from django.db import models
 from django.conf import settings
-from mainapp.models import Courses
+from mainapp.models import Course
 
 
 class Basket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                              related_name='basket')
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE,
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,
                                related_name='course')
 
     def __str__(self):
@@ -16,3 +16,13 @@ class Basket(models.Model):
     def get_total_quantity(user):
         cart = Basket.objects.filter(user=user)
         return len(cart)
+
+    @staticmethod
+    def get_items(request):
+        items = []
+        for item in Basket.objects.filter(user=request.user).all():
+            if item.course.count == 0:
+                item.delete()
+            else:
+                items.append(item)
+        return items

@@ -73,6 +73,10 @@
 
                     <div class="col-md-4 col-sm-4 col-xs-6 register">
 
+                        {% if user.is_superuser %}
+                                <a class="register-link" href="{% url 'admin:index' %}">Admin</a>
+                        {% endif %}
+
                         {% if user.is_authenticated %}
                             <a class="register-link" href="{% url 'auth:logout' %}">Logout</a>
                         {% else %}
@@ -120,33 +124,7 @@
                 </div>
             </div><!-- Footer About /- -->
 
-            <div class="row">
-                <!-- Customer Service Widget -->
-                <aside class="col-md-3 col-sm-6 col-xs-6 widget widget_customer_services">
-                    <h3 class="block-title">Customer services</h3>
-                    <ul>
-                        <li><a title="Online Earning" href="#">Online Earning</a></li>
-                        <li><a title="Materials" href="#">Materials</a></li>
-                        <li><a title="Presentation" href="#">Presentation</a></li>
-                        <li><a title="Printed materials" href="#">Printed materials</a></li>
-                        <li><a title="Curriculum" href="#">curriculum</a></li>
-                        <li><a title="Literature" href="#">literature</a></li>
-                        <li><a title="Help & Faq" href="#">Help & Faq</a></li>
-                    </ul>
-                </aside><!-- Customer Service Widget /- -->
-
-                <!-- Quick Links Widget -->
-                <aside class="col-md-2 col-sm-6 col-xs-6 widget widget_quick_links">
-                    <h3 class="block-title">Quick links</h3>
-                    <ul>
-                        <li><a title="Faq" href="#">Faq</a></li>
-                        <li><a title="Support" href="#">Support</a></li>
-                        <li><a title="Sitemap" href="#">Sitemap</a></li>
-                        <li><a title="Community" href="#">Community</a></li>
-                        <li><a title="membership" href="#">membership</a></li>
-                    </ul>
-                </aside><!-- Quick Links Widget /- -->
-
+            <div class="footer-position row">
                 <!-- ContactUs Widget -->
                 <aside class="col-md-3 col-sm-6 col-xs-6 widget widget_contactus">
                     <h3 class="block-title">Contact Us</h3>
@@ -157,8 +135,8 @@
                     <div class="contactinfo-box">
                         <i class="fa fa-phone"></i>
                         <p>
-                            <a title="0112345678" href="tel:+0112345678">+01 123 456 78</a>
-                            <a title="0112355689" href="tel:+0112355689">+01 123 556 89</a>
+                            <a href="tel:+0112345678">+01 123 456 78</a>
+                            <a href="tel:+0112355689">+01 123 556 89</a>
                         </p>
                     </div>
                     <div class="contactinfo-box">
@@ -197,7 +175,7 @@
             <div class="footer-menu">
                 <!-- Copyrights -->
                 <div class="copyrights ow-pull-left">
-                    <p>&copy; 2016 | All rights reserved</p>
+                    <p>&copy; 2020 | All rights reserved</p>
                 </div><!-- Copyrights /- -->
                 <!-- Navigation -->
                 <nav class="navbar ow-navigation ow-pull-right">
@@ -211,7 +189,7 @@
                     </div>
                     <div class="navbar-collapse collapse" id="navbar2">
                         <ul class="nav navbar-nav">
-                            <li><a title="Home" href="index.html">Home</a></li>
+                            <li><a title="Home" href="{% url 'main:index' %}">Home</a></li>
                         </ul>
                     </div>
                 </nav><!-- Navigation /- -->

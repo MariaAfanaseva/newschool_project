@@ -2,6 +2,7 @@
 {% load static %}
 {% load tags %}
 {% block content %}
+{% load tz %}
 	<!-- PageBanner -->
 	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static '/images/error-banner.jpg'%});">
 		<div class="section-padding"></div>
@@ -46,16 +47,17 @@
 									</div>
 									<div class="post-time">
 										<span class="icon icon-Time"></span>
-										<span>{{current_course.course.start_date.time|time:"g:i a"}} - {{current_course.course.finish_date|time:"g:i a"}}</span>
+										<span>{{current_course.course.start_date|localtime|time:"g:i a"}} -
+											{{current_course.course.finish_date|localtime|time:"g:i a"}}</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-Tag"></span>
-										<span>Level - {{current_course.level_letter}}{{current_course.level_number}}</span>
+										<span>Level: {{current_course.level_letter}}{{current_course.level_number}}</span>
 									</div>
 									<div class="post-location">
 										<span class="icon icon-User"></span>
 										<span>
-											Teacher - {% for teacher in current_course.course.teacher.all %}
+											Teacher: {% for teacher in current_course.course.teacher.all %}
 											<a href="{% url 'main:teacher' teacher.pk %}">{{teacher}}</a>{% endfor %}
 										</span>
 									</div>
@@ -67,6 +69,32 @@
 										<span class="glyphicon glyphicon-credit-card"></span>
 										<span>Price: {{current_course.course.price}}&euro;</span>
 									</div>
+									<div class="post-location">
+										<span class="glyphicon glyphicon-book"></span>
+										<span>
+											Book:
+											{% for book in current_course.book.all %}
+											<a href="#">{{book.name}} {{book.author}} </a>
+											{% endfor %}
+										</span>
+									</div>
+									<div class="post-location">
+										{% if current_course.course.count > 0 %}
+											<span class="glyphicon glyphicon-ok"
+										    	{% if current_course.course.count > 15 %}
+													style='color: green'
+												{% elif current_course.course.count > 5 %}
+													style='color: orange'
+												{% else %}
+													style='color: red'
+												{% endif %}>
+											</span>
+											<span>Free places: {{current_course.course.count}}</span>
+										{% else %}
+											<span class="glyphicon glyphicon-remove" style="color: red"></span>
+											<span>No free places!</span>
+										{% endif %}
+									</div>
 								</div>
 							</div>
 							<div class="entry-content">
@@ -75,7 +103,11 @@
 						</div>
 					</article>
 					<div class="buy-course">
-						<div class="buy-cart-btn"><a href="{% url 'basket:add' current_course.course.pk %}">Add in basket</a></div>
+						{% if current_course.course.count > 0 %}
+							<div class="buy-cart-btn">
+								<a href="{% url 'basket:add' current_course.course.pk %}">Add in basket</a>
+							</div>
+						{% endif %}
 					</div>
 
 					<!-- Map -->
@@ -139,36 +171,36 @@
 			</div>
 			<div class="row">
                 {% for lang_course in page_obj %}
-				    <div class="col-md-4 col-sm-6 col-xs-6">
-                        <article class="type-post">
-                            <div class="entry-block">
-                                <div class="entry-title">
-                                    <a href="{% url 'main:language_course' lang_course.pk %}" ><h3>{{lang_course.course.name}}</h3></a>
-                                </div>
-                                <div class="entry-meta">
-                                    <div class="post-date">
-                                        <p>{{lang_course.course.start_date|str_month }}<span>
+					<div class="col-md-4 col-sm-6 col-xs-6">
+						<article class="type-post">
+							<div class="entry-block">
+								<div class="entry-title">
+									<a href="{% url 'main:language_course' lang_course.pk %}" ><h3>{{lang_course.course.name}}</h3></a>
+								</div>
+								<div class="entry-meta">
+									<div class="post-date">
+										<p>{{lang_course.course.start_date|str_month }}<span>
 											{{lang_course.start_date.day}}</span></p>
-                                    </div>
-                                    <div class="post-metablock">
-                                        <div class="post-time">
-                                            <span>{{lang_course.course.start_date|date:"d.M"}} -
+									</div>
+									<div class="post-metablock">
+										<div class="post-time">
+											<span>{{lang_course.course.start_date|date:"d.M"}} -
 												{{lang_course.course.finish_date|date:"d.M"}},
 												{{lang_course.course.start_date.time|time:"g:i a"}} -
 												{{lang_course.course.finish_date|time:"g:i a"}}</span>
-									    </div>
-                                        <div class="post-location">
-                                            <span>{{lang_course.course.address}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry-content">
-                                    <p>{{lang_course.course.short_desc}}</p>
-                                </div>
-                                <a href="{% url 'main:language_course' lang_course.course.pk %}" class="learn-more">Learn More</a>
-                            </div>
-                        </article>
-				    </div>
+										</div>
+										<div class="post-location">
+											<span>{{lang_course.course.address}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="entry-content">
+									<p>{{lang_course.course.short_desc}}</p>
+								</div>
+								<a href="{% url 'main:language_course' lang_course.course.pk %}" class="learn-more">Learn More</a>
+							</div>
+						</article>
+					</div>
                 {% endfor %}
 			</div>
 

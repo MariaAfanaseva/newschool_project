@@ -1,0 +1,10 @@
+{% load tags %}
+<div class="order-block">
+    <div class="order-success">
+        <p>Success! Your order was paid!
+            You can see your order in orders.</p>
+    </div>
+    <div class="buy-cart-btn">
+        <a href="{% url 'order:order_list' %}">Orders</a>
+    </div>
+</div>

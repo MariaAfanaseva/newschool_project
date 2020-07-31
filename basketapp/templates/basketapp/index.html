@@ -24,5 +24,6 @@
 	</div>
 {% endblock %}
 {% block js %}
+	<script src="https://www.paypal.com/sdk/js?client-id={{ client_id }}&currency=EUR&disable-funding=sepa,giropay,sofort"></script>
     <script src="{% static 'js/basket.js' %}"></script>
 {% endblock %}

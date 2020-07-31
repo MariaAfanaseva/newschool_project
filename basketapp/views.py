@@ -1,9 +1,11 @@
+from django.urls import reverse
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from mainapp.models import Languages, Courses
+from django.conf import settings
+from mainapp.models import Language, Course
 from basketapp.models import Basket
 
 
@@ -12,37 +14,42 @@ class BasketView(LoginRequiredMixin, View):
     login_url = 'auth:login'
 
     def get(self, request):
-        basket_items = Basket.objects.filter(user=request.user)
+        basket_items = Basket.get_items(request)
+        client_id = settings.CLIENT_ID
 
         context = {
             'title': 'Basket',
-            'languages': Languages.get_languages(),
+            'languages': Language.get_languages(),
             'basket_items': basket_items,
+            'client_id': client_id,
         }
         return render(request, self.template_name, context)
 
 
 class BasketAdd(LoginRequiredMixin, View):
+    login_url = 'auth:login'
+
     def get(self, request, pk):
-        course = get_object_or_404(Courses, pk=pk)
-        basket_course = Basket.objects.filter(user=request.user, course=course).first()
+        course = get_object_or_404(Course, pk=pk)
+        if course.count > 0:
+            basket_course = Basket.objects.filter(user=request.user, course=course).first()
 
-        if not basket_course:
-            basket_course = Basket(user=request.user, course=course)
+            if not basket_course:
+                basket_course = Basket(user=request.user, course=course)
 
-        basket_course.save()
+            basket_course.save()
 
-        print(request.META.get('HTTP_REFERER'))
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            return HttpResponseRedirect(reverse('basket:index'))
 
 
 class BasketDelete(LoginRequiredMixin, View):
-    def get(self, request, pk):
-        basket_item = Basket.objects.filter(user=request.user, id=pk).first()
-        basket_item.delete()
-        basket_items = Basket.objects.filter(user=request.user).all()
-        cart_total_quantity = Basket.get_total_quantity(request.user)
-        context = {'basket_items': basket_items}
+    login_url = 'auth:login'
 
-        result = render_to_string('basketapp/includes/cart.html', context, request)
-        return JsonResponse({'result': result, 'cart_quantity': cart_total_quantity})
+    def delete(self, request, pk):
+        if request.is_ajax:
+            basket_item = Basket.objects.filter(user=request.user, id=pk).first()
+            basket_item.delete()
+            basket_items = Basket.get_items(request)
+            context = {'basket_items': basket_items}
+            result = render_to_string('basketapp/includes/cart.html', context, request)
+            return JsonResponse({'result': result})

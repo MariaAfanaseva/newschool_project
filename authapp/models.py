@@ -4,6 +4,7 @@ from django.contrib.auth.models import BaseUserManager
 from django.utils.timezone import now, timedelta
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.contrib.auth.models import PermissionsMixin
 
 
 def get_verification_key_time():
@@ -11,7 +12,7 @@ def get_verification_key_time():
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, name, password):
         if not email:
             raise ValueError('The Email must be set.')
 
@@ -25,18 +26,20 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)  # Default database in settings
         return user
 
-    def create_superuser(self, email, name, password=None):
+    def create_superuser(self, email, name, password):
         user = self.create_user(
             email=email,
             name=name,
-            password=password,
+            password=password
         )
-        user.is_admin = True
+        user.is_superuser = True
+        user.is_staff = True
+        user.is_active = True
         user.save(using=self._db)
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='Email address',
         max_length=255,
@@ -44,7 +47,8 @@ class User(AbstractBaseUser):
     )
     name = models.CharField(verbose_name='Name', max_length=128)
     is_active = models.BooleanField(verbose_name='Active user', default=False)
-    is_admin = models.BooleanField(verbose_name='Admin', default=False)
+    is_staff = models.BooleanField(verbose_name='Staff', default=False)  # a admin user; non super-user
+    is_superuser = models.BooleanField(verbose_name='Admin', default=False)  # a superuser
 
     objects = UserManager()
 
@@ -55,8 +59,8 @@ class User(AbstractBaseUser):
         return self.email
 
     @property
-    def is_staff(self):
-        return self.is_admin  # All admins are staff
+    def get_short_name(self):
+        return self.name
 
 
 class UserVerify(models.Model):

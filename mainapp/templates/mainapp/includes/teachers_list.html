@@ -1,0 +1,40 @@
+{% load static %}
+<div id="teachers-row" class="row">
+    <div class="col-md-9 col-sm-6 col-xs-6 content-area">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-6 blog-box">
+                {% if not teachers %}
+                    <p>No teachers</p>
+                {% else %}
+                    {% for teacher in teachers %}
+                        <article class="type-post">
+                            <div class="entry-cover">
+                                <a href="{% url 'main:teacher' teacher.pk %}">
+                                    <img src="{% if teacher.photo %}{{MEDIA_URL}}{{teacher.photo}}
+                                              {% else %} {% static 'images/default_teacher_img.jpg' %}
+                                              {% endif %}" alt="{{ teacher.surname }}" width="297" height="298"/></a>
+                            </div>
+                            <div class="entry-block">
+                                <div class="entry-meta"></div>
+                                <div class="entry-title">
+                                    <a href="{% url 'main:teacher' teacher.pk %}"><h3>{{teacher.name}} {{teacher.surname}}</h3></a>
+                                </div>
+                                <div class="entry-content">
+                                    <p>{{teacher.introduction}}</p>
+                                </div>
+                                <a href="{% url 'main:teacher' teacher.pk %}" class="learn-more">Learn More</a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Ow Pagination -->
+            <div id="teachers-pagination">
+                {% include 'mainapp/includes/pagination.html'%}
+            </div>
+        <!-- Ow Pagination /- -->
+
+    </div>
+</div>

@@ -1,56 +1,57 @@
+{% load tags %}
 <div class="container cart">
     <div class="cart-title">
-        <span class="cart-title">Your shop card</span>
+        <span>Your shop card</span>
+        <p>{{ user.get_short_name }}</p>
     </div>
-    <div id="cart-items">
-        <div class="container">
-            <div class="table-responsive cart-info">
-                <table class="table table-condensed">
-                    <thead>
-                        <tr class="cart-menu">
-                            <td class="name">Course</td>
-                            <td class="description">Description</td>
-                            <td class="total">Price</td>
-                            <td>Delete</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% if not basket_items%}
-                        <tr>
-                            <td>Your basket is empty!</td>
-                        </tr>
-                    {% else %}
-                        {% for item in basket_items %}
-                            <tr>
-                                <td class="cart-description">
-                                    <h4><a href="{% url 'main:language_course' item.course.pk %}">{{ item.course.name }}</a></h4>
-                                </td>
-                                <td class="cart-description">
-                                    <p>Level: {{item.course.languagecourses.level_letter}}{{item.course.languagecourses.level_number}}</p>
-                                    <p>Date: {{item.course.start_date|date:"d.Ny"}} - {{item.course.finish_date|date:"d.Ny"}}</p>
-                                    <p>Time: {{item.course.start_date.time|time:"g:i a"}} - {{item.course.finish_date.time|time:"g:i a"}}</p>
-                                    <p>Place: {{item.course.address}}</p>
-
-                                </td>
-
-                                <td>
-                                    <p class="cart-total-price">{{ item.course.price }} &euro;</p>
-                                </td>
-                                <td class="cart-delete">
-                                    <a class="cart-quantity-delete" href="{% url 'basket:delete' item.pk %}">x</a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> <!--/#cart-items-->
-
+    {% include 'basketapp/includes/cart_items.html' %}
     <div class="total-area">
         {% include 'basketapp/includes/total.html' %}
-        <div class="buy-cart-btn"><a href="{% url 'basket:index' %}">Update</a></div>
-        <div class="buy-cart-btn"><a href="">Buy</a></div>
+        {% if cart|cart_total_price > 0 %}
+            <div id="paypal-button-container" data-success="{% url 'order:create' %}"></div>
+        {% endif %}
     </div>
 </div>
+<script id="pay-pal">
+    const totalPrice = '{{cart|cart_total_price}}';
+
+    function payPal() {
+
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            style: {
+                size: 'large',
+                color: 'gold',
+                shape: 'rect',
+                label: 'pay'
+            },
+
+
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalPrice,
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                $("#site-loader").css("display","block");
+                return actions.order.capture().then(function(details) {
+                    if (details.status === 'COMPLETED') {
+                        completeOrder(details);
+                    }
+                    else {
+                        alert("Your order wasn't paid! Something was wrong!");
+                    }
+                });
+            }
+        }).render('#paypal-button-container');
+    }
+
+</script>

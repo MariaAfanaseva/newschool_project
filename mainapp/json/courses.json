@@ -1,6 +1,6 @@
 [
   {
-    "name": "Intensive course German",
+    "name": "Intensive course German B1.1",
     "short_desc": "This is the best German language course.",
     "description": "The German class is an accompanying general language course which aims at developing and/or deepening the language skills of the student. This contains the further development of the following skills: listening, speaking, reading and writing tailored to the varying language proficiency of the participant.",
     "teacher": "Angela, Lena",
@@ -9,10 +9,11 @@
     "finish_date": "2020-09-01 13:00:00+01:00",
     "duration": 30,
     "address": "Marienplatz",
-    "image": "course_photos/german_course.jpg"
+    "image": "course_photos/german_course.jpg",
+    "count": 30
   },
     {
-    "name": "Intensive course English",
+    "name": "Intensive course English B1.2",
     "short_desc": "This is the best English language course.",
     "description": "This course emphasizes the fundamental language skills of reading, writing, speaking, listening, thinking, viewing and presenting. An emphasis on vocabulary and composition skills will be an on-going part of the program. The course includes studies of various literary genres: short story, poetry, novel, drama, and non-fiction. The development of critical reading and writing skills is a major emphasis of the course.",
     "teacher": "Mark",
@@ -21,10 +22,11 @@
     "finish_date": "2020-09-16 12:00:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_course.jpg"
+    "image": "course_photos/english_course.jpg",
+    "count": 30
   },
     {
-    "name": "Intensive course Italian",
+    "name": "Intensive course Italian B1.1",
     "short_desc": "This is the best Italian language course.",
     "description": "Intensive course in conversation and composition. Promotes facility in speaking and understanding idiomatic Italian.",
     "teacher": "Domenico",
@@ -33,10 +35,11 @@
     "finish_date": "2020-09-21 14:00:00+01:00",
     "duration": 30,
     "address": "Via Borromei",
-    "image": "course_photos/italian_course.jpg"
+    "image": "course_photos/italian_course.jpg",
+    "count": 30
   },
   {
-    "name": "English course for IT",
+    "name": "English course for IT C1.1",
     "short_desc": "This is the best English language course for IT.",
     "description": "It is a self-paced course in technical English for IT students. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
     "teacher": "Mark",
@@ -45,10 +48,11 @@
     "finish_date": "2020-09-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
   {
-    "name": "Standart course German",
+    "name": "Standart course German A1.1",
     "short_desc": "This is the best German language course.",
     "description": "The German class is an accompanying general language course which aims at developing and/or deepening the language skills of the student. This contains the further development of the following skills: listening, speaking, reading and writing tailored to the varying language proficiency of the participant.",
     "teacher": "Lena",
@@ -57,10 +61,11 @@
     "finish_date": "2020-09-30 13:00:00+01:00",
     "duration": 30,
     "address": "Marienplatz",
-    "image": "course_photos/german_course.jpg"
+    "image": "course_photos/german_course.jpg",
+    "count": 30
   },
   {
-    "name": "Standart English course",
+    "name": "Standart English course A1.2",
     "short_desc": "This is the best English language course.",
     "description": "It is English course. Think of it as an interactive. But it's not dull like a textbook. It's interactive and a lot more fun.\n\nThe subject matter is suitable for students, professionals, and government career training programs. Topics include: software engineering, tech support, technical sales, and most other IT careers. The focus is on real English as it is spoken in an international job environment.",
     "teacher": "Mark",
@@ -69,7 +74,8 @@
     "finish_date": "2020-09-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
   {
     "name": "Standart English course A1.1",
@@ -81,7 +87,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course A2.1",
@@ -93,7 +100,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course B1.1",
@@ -105,7 +113,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course B2.1",
@@ -117,7 +126,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course C1.1",
@@ -129,7 +139,8 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   },
    {
     "name": "Standart English course C1.2",
@@ -141,6 +152,7 @@
     "finish_date": "2020-10-28 13:30:00+01:00",
     "duration": 30,
     "address": "Facebook Way",
-    "image": "course_photos/english_it_course.jpg"
+    "image": "course_photos/english_it_course.jpg",
+    "count": 30
   }
 ]

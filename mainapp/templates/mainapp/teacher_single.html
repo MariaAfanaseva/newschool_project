@@ -26,7 +26,9 @@
 				<div class="col-md-9 col-sm-8 content-area">
 					<article class="type-post">
 						<div class="entry-cover">
-							<img src="{{MEDIA_URL}}{{teacher.photo}}" alt="teacher-single" width="820" height="410"/>
+							{% if teacher.photo %}
+								<img src="{{MEDIA_URL}}{{teacher.photo}}" alt="teacher-single" width="820" height="210"/>
+							{% endif %}
 						</div>
 						<div class="entry-block">
 							<div class="entry-title">

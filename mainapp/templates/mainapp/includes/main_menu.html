@@ -52,6 +52,12 @@
                                 <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" href="{% url 'main:teachers' %}">Teachers</a>
                             </li>
                             <li><a href="#">Contact Us</a></li>
+                            {% if user.is_authenticated %}
+                                <li class="{% if request.resolver_match.view_name == 'order:order_list'%}active dropdown
+                                       {% else %}dropdown{% endif %}">
+                                    <a href="{% url 'order:order_list' %}">Orders</a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </nav><!-- Navigation /- -->

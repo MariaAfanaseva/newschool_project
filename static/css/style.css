@@ -565,7 +565,6 @@ a {
 	font-family: 'Myriad Pro Regular';
 	font-style: normal;
 	font-weight: normal;
-	src: local('fonts/Myriad Pro Regular'), url('fonts/MYRIADPRO-REGULAR.woff') format('woff');
 }
 
 /* ## Header */
@@ -832,6 +831,7 @@ a {
 
 #cart-items .cart-info {
     border: 1px solid #E6E4DF;
+    margin-bottom: 100px;
 }
 
 #cart-items .cart-info .cart-menu {
@@ -863,8 +863,20 @@ a {
     text-transform: capitalize;
 }
 
+.cart-title p{
+    font-size: 18px;
+	letter-spacing: 2.88px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 600;
+	font-style: italic;
+	color: #feca16;
+	line-height: 28px;
+	text-transform: capitalize;
+    margin-top: 10px;
+}
+
 #cart-items .cart-info .table.table-condensed tr {
-    border-bottom: 1px solid#F7F7F0
+    border-bottom: 1px solid #ddd
 }
 
 #cart-items .cart-info .table.table-condensed tr:last-child {
@@ -963,7 +975,26 @@ a {
     margin-bottom: 30px;
 }
 
+.total-area #paypal-button-container {
+    width: 350px;
+}
 
+/*Order*/
+
+.order-success {
+    margin-bottom: 100px;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.order-block{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+
+}
 /* ## Footer */
 .footer-main {	
 	background-color: #29363e;
@@ -1040,6 +1071,7 @@ a {
 .footer-main .widget.widget_quick_links{
 	padding-left: 4px;
 }
+
 
 /* - ContactUs Widget */
 .footer-main .widget_contactus {
@@ -1231,6 +1263,10 @@ a {
 	padding-right: 0;
 }
 
+.footer-main .footer-position {
+    display: flex;
+    justify-content: space-around;
+}
 
 /* ========================================================================== */
 /* ========================================================================== */
@@ -1392,6 +1428,12 @@ a {
 	.menu-search .sb-search.sb-search-open .sb-search-input {
 		width: 210px;
 	}
+
+    .cart-total {
+        margin: 10px;
+        padding-right: 15px;
+
+}
 	
 	/* - Footer Main */		
 	/* - Footer About */

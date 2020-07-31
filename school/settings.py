@@ -21,6 +21,8 @@ local_config_path = os.path.join(BASE_DIR, 'conf', 'local.conf')
 config = ConfigParser()
 config.read(local_config_path)
 
+DEBUG = config.getboolean('main', 'DEBUG')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -30,18 +32,13 @@ secret_key_path = os.path.join(BASE_DIR, 'conf', 'secret_key.txt')
 with open(secret_key_path) as key:
     SECRET_KEY = key.read().strip()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
+    'orderapp.apps.OrderappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,42 +117,31 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Berlin'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    '/usr/local/lib/python3.8/site-packages/django/contrib/admin/static',
 )
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/media/'
 
 # Changes the built-in user model to ours
 AUTH_USER_MODEL = 'authapp.User'
-
-# Email server, verify be email
-EMAIL_HOST = config.get('smtp', 'EMAIL_HOST')
-EMAIL_PORT = config.get('smtp', 'EMAIL_PORT')
-EMAIL_HOST_USER = config.get('smtp', 'EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
-EMAIL_USE_SSL = config.getboolean('smtp', 'EMAIL_USE_SSL')
-
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = 'tmp/email_messages/'
-
-DOMAIN_NAME = 'http://localhost:8000'
 
 LOGGING = {
     'version': 1,
@@ -175,3 +161,30 @@ LOGGING = {
         },
     },
 }
+
+CLIENT_ID = config.get('paypal', 'CLIENT_ID')
+
+if DEBUG:
+    ALLOWED_HOSTS = []
+
+    DOMAIN_NAME = 'http://localhost:8000'
+
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = 'tmp/email_messages/'
+    EMAIL_HOST = config.get('smtp', 'EMAIL_HOST')
+    EMAIL_PORT = config.get('smtp', 'EMAIL_PORT')
+    EMAIL_HOST_USER = config.get('smtp', 'EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
+    EMAIL_USE_SSL = config.getboolean('smtp', 'EMAIL_USE_SSL')
+else:
+    ALLOWED_HOSTS = ['*']
+
+    DOMAIN_NAME = 'http://192.168.178.44'
+
+    # Email server, verify be email
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_USE_TLS = config.get('smtp_prod', 'EMAIL_USE_TLS')
+    EMAIL_PORT = config.get('smtp_prod', 'EMAIL_PORT')
+    EMAIL_HOST_USER = config.get('smtp_prod', 'EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config.get('smtp_prod', 'EMAIL_HOST_PASSWORD')
