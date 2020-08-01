@@ -112,7 +112,8 @@ class Language(models.Model):
 
 
 class LanguageCourse(models.Model):
-    course = models.OneToOneField(Course, primary_key=True, on_delete=models.CASCADE)
+    course = models.OneToOneField(Course, primary_key=True, on_delete=models.CASCADE,
+                                  related_name='language_course')
     language = models.ForeignKey(Language, models.CASCADE, verbose_name='language')
     level_letter = models.CharField(verbose_name='language level letter', max_length=1)
     level_number = models.FloatField(verbose_name='language level number', max_length=3)
@@ -125,7 +126,7 @@ class LanguageCourse(models.Model):
     def get_courses(language_pk):
         return LanguageCourse.objects.filter(language=language_pk). \
             filter(course__start_date__gte=datetime.datetime.now()).\
-            order_by('level_letter', 'level_number').select_related()
+            order_by('level_letter', 'level_number').select_related('course')
 
     @staticmethod
     def get_level_letter():

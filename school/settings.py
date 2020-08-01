@@ -165,6 +165,7 @@ LOGGING = {
 CLIENT_ID = config.get('paypal', 'CLIENT_ID')
 
 if DEBUG:
+    print('Debug')
     ALLOWED_HOSTS = []
 
     DOMAIN_NAME = 'http://localhost:8000'
@@ -176,7 +177,37 @@ if DEBUG:
     EMAIL_HOST_USER = config.get('smtp', 'EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = config.get('smtp', 'EMAIL_HOST_PASSWORD')
     EMAIL_USE_SSL = config.getboolean('smtp', 'EMAIL_USE_SSL')
+
+    INSTALLED_APPS.extend(['debug_toolbar'])
+
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': lambda x: True,
+    }
+
+    DEBUG_TOOLBAR_PANELS = [
+        'debug_toolbar.panels.versions.VersionsPanel',
+        'debug_toolbar.panels.timer.TimerPanel',
+        'debug_toolbar.panels.settings.SettingsPanel',
+        'debug_toolbar.panels.headers.HeadersPanel',
+        'debug_toolbar.panels.request.RequestPanel',
+        'debug_toolbar.panels.sql.SQLPanel',
+        'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+        'debug_toolbar.panels.templates.TemplatesPanel',
+        'debug_toolbar.panels.cache.CachePanel',
+        'debug_toolbar.panels.signals.SignalsPanel',
+        'debug_toolbar.panels.logging.LoggingPanel',
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+        'debug_toolbar.panels.profiling.ProfilingPanel',
+    ]
+
+    INTERNAL_IPS = [
+        '127.0.0.1',
+    ]
+
 else:
+    print('Not Debug')
     ALLOWED_HOSTS = ['*']
 
     DOMAIN_NAME = 'http://192.168.178.44'

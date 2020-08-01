@@ -19,8 +19,10 @@ class Basket(models.Model):
 
     @staticmethod
     def get_items(request):
+        basket_items = Basket.objects.filter(user=request.user).all()\
+            .select_related('course', 'course__address', 'course__language_course')
         items = []
-        for item in Basket.objects.filter(user=request.user).all():
+        for item in basket_items:
             if item.course.count == 0:
                 item.delete()
             else:

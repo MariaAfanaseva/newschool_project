@@ -40,7 +40,9 @@ class OrderListView(ListView):
     context_object_name = 'orders'
 
     def get_queryset(self):
-        orders = Order.objects.filter(user=self.request.user).order_by('-created')
+        orders = Order.objects.filter(user=self.request.user).order_by('-created')\
+            .prefetch_related('courses', 'courses__address', 'courses__language_course')\
+            .select_related('payment')
         return orders
 
     def get_context_data(self, **kwargs):
