@@ -1,7 +1,4 @@
-# newschool_project
-Django project (PostgreSQL, Docker)
-
-Start project: docker-compose up
-Stop project: docker-compose down 
-
-Start in env: python manage.py runserver
+# Newschool
+Django project -  https://newschool.ga<br />
+Django, PostgreSQL, Bootstrap, jQuery<br />
+Deployed on AWS (Docker, Docker Compose, EC2, S3, RDS).
