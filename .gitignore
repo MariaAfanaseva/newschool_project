@@ -6,4 +6,3 @@ migrations/
 media/
 logs/
 tmp/
-docker/

@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.urls import reverse
+from school.storage_backends import MediaStorage
 
 
 class Teacher(models.Model):
@@ -71,7 +72,8 @@ class Course(models.Model):
     address = models.ForeignKey(Address, models.SET_NULL,
                                 blank=True, null=True,
                                 verbose_name='course address')
-    image = models.ImageField(upload_to='course_photos', verbose_name='course image', blank=True)
+    image = models.ImageField(upload_to='course_photos', storage=MediaStorage(),
+                              verbose_name='course image', blank=True)
     count = models.PositiveIntegerField(verbose_name='number of seats', default=0)
 
     def __str__(self):

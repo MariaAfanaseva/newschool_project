@@ -12,14 +12,23 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from configparser import ConfigParser
+from dotenv import load_dotenv
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Parser file local.conf
-local_config_path = os.path.join(BASE_DIR, 'conf', 'local.conf')
+# Config files
+local_config_folder = os.path.join(BASE_DIR, 'conf')
+config_path = os.path.join(local_config_folder, 'local.conf')
 config = ConfigParser()
-config.read(local_config_path)
+config.read(config_path)
+
+env_path = Path(local_config_folder) / '.env.aws-s3'
+load_dotenv(dotenv_path=env_path)
+
+# Amazon Web Services Storage
+USE_AWS_S3 = (os.getenv('USE_AWS_S3') == 'True')
 
 DEBUG = config.getboolean('main', 'DEBUG')
 
@@ -126,19 +135,32 @@ USE_L10N = True
 USE_TZ = False
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
+if USE_AWS_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'school.storage_backends.StaticStorage'
+    # s3 public media settings
+    MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'school.storage_backends.MediaStorage'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = '/static/'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = '/media/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     '/usr/local/lib/python3.8/site-packages/django/contrib/admin/static',
 )
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media/'
 
 # Changes the built-in user model to ours
 AUTH_USER_MODEL = 'authapp.User'
@@ -165,7 +187,6 @@ LOGGING = {
 CLIENT_ID = config.get('paypal', 'CLIENT_ID')
 
 if DEBUG:
-    print('Debug')
     ALLOWED_HOSTS = []
 
     DOMAIN_NAME = 'http://localhost:8000'
@@ -207,7 +228,6 @@ if DEBUG:
     ]
 
 else:
-    print('Not Debug')
     ALLOWED_HOSTS = ['*']
 
     DOMAIN_NAME = 'http://192.168.178.44'
@@ -219,3 +239,5 @@ else:
     EMAIL_PORT = config.get('smtp_prod', 'EMAIL_PORT')
     EMAIL_HOST_USER = config.get('smtp_prod', 'EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = config.get('smtp_prod', 'EMAIL_HOST_PASSWORD')
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
