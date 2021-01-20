@@ -37,7 +37,8 @@ class IndexListView(ListView):
 
     def get_queryset(self):
         return Course.objects.filter(
-            start_date__gte=timezone.now()).order_by("?")[:4]
+            start_date__gte=timezone.now()).order_by("?")[:4]\
+            .select_related('address').prefetch_related('teacher')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,7 +56,7 @@ class LanguageCoursesListView(CoursesFilter, ListView):
         pk = self.kwargs['pk']
         self.current_language = get_object_or_404(Language,
                                                   pk=pk)
-        return LanguageCourse.get_courses(pk)
+        return LanguageCourse.get_courses(pk).select_related('course__address')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -75,7 +76,8 @@ class LanguageCourseView(ListView):
         course_pk = self.kwargs['pk']
         self.course = get_object_or_404(LanguageCourse, pk=course_pk)
         language_pk = self.course.language.pk
-        return LanguageCourse.get_courses(language_pk).exclude(pk=course_pk)
+        return LanguageCourse.get_courses(language_pk).exclude(pk=course_pk)\
+            .select_related('course__address', 'language')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -108,8 +110,8 @@ class TeacherView(ListView):
     def get_queryset(self):
         teacher_pk = self.kwargs['pk']
         self.teacher = get_object_or_404(Teacher, pk=teacher_pk)
-        return Course.objects.filter(teacher=teacher_pk).\
-            filter(start_date__gte=timezone.now())
+        return Course.objects.filter(teacher=teacher_pk)\
+            .filter(start_date__gte=timezone.now()).select_related('address')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

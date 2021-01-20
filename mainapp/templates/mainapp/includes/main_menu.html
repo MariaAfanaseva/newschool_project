@@ -1,4 +1,5 @@
 {% load static %}
+{% load cache %}
 <!-- Menu Block -->
     <div class="menu-block container-fluid no-padding">
         <!-- Container -->
@@ -41,11 +42,13 @@
                                        {% else %}dropdown{% endif %}">
                                 <a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle">Language courses</a>
                                 <i class="ddl-switch fa fa-angle-down"></i>
-                                <ul class="dropdown-menu">
-                                    {% for language in languages %}
-                                        <li><a href="{% url 'main:language_courses' language.pk  %}">{{language.name}}</a></li>
-                                    {% endfor %}
-                                </ul>
+                                {% cache 1200 languages %}
+                                    <ul class="dropdown-menu">
+                                        {% for language in languages %}
+                                            <li><a href="{% url 'main:language_courses' language.pk  %}">{{language.name}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endcache %}
                             </li>
                             <li class="{% if request.resolver_match.view_name == 'main:teachers' or request.resolver_match.view_name == 'main:teacher'%}active dropdown
                                        {% else %}dropdown{% endif %}">
