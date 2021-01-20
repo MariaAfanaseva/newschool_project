@@ -4,7 +4,7 @@
 {% block content %}
 {% load tz %}
 	<!-- PageBanner -->
-	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static '/images/error-banner.jpg'%});">
+	<div class="container-fluid page-banner event-grid event-list no-padding" style="background: url({% static 'images/error-banner.jpg'%});">
 		<div class="section-padding"></div>
 			<div class="container">
 				<div class="banner-content-block">
@@ -105,7 +105,7 @@
 					<div class="buy-course">
 						{% if current_course.course.count > 0 %}
 							<div class="buy-cart-btn">
-								<a href="{% url 'basket:add' current_course.course.pk %}">Add in basket</a>
+								<a href="{% url 'basket:add' current_course.course.pk %}">Add to basket</a>
 							</div>
 						{% endif %}
 					</div>
@@ -114,49 +114,6 @@
 					<div class="map">
 						<iframe src={{current_course.course.address.google_map}} width="700" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div><!-- Map /- -->
-                </div>
-
-				<div class="col-md-3 col-sm-4 widget-area">
-                    <aside class="widget widget_find_event">
-						<div class="widget-title">
-							<span class="icon icon-Podium"></span>
-							<h3>Find courses</h3>
-						</div>
-						<div class="find-event_top-block">
-							<div class="input-group">
-								<input type="text" placeholder="Enter keyword" class="form-control"/>
-								<span class="icon icon-Eye"></span>
-								<span class="input-group-btn">
-									<button type="button" class="btn"><i class="fa fa-search"></i></button>
-								</span>
-							</div>
-							<div class="event-select-option">
-								<select class="selectpicker">
-									<option data-icon="icon-WorldWide">Course Location</option>
-									<option data-icon="icon-WorldWide">Location 1</option>
-									<option data-icon="icon-WorldWide">Location 2</option>
-									<option data-icon="icon-WorldWide">Location 3</option>
-								</select>
-							</div>
-							<div class="event-select-option">
-								<select class="selectpicker">
-									<option data-icon="icon-Notes">Search by date</option>
-									<option data-icon="icon-Notes">Date 1</option>
-									<option data-icon="icon-Notes">Date 2</option>
-									<option data-icon="icon-Notes">Date 3</option>
-								</select>
-							</div>
-							<div class="event-select-option">
-								<select class="selectpicker">
-									<option data-icon="icon-Tag">Search by level</option>
-									<option data-icon="icon-Tag">category 1</option>
-									<option data-icon="icon-Tag">category 2</option>
-									<option data-icon="icon-Tag">category 3</option>
-								</select>
-							</div>
-							<a href="#">Search</a>
-						</div>
-					</aside>
                 </div>
 			</div>
 		</div>
