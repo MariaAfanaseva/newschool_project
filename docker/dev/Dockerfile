@@ -4,4 +4,4 @@ RUN mkdir /code
 WORKDIR /code
 COPY . /code/
 RUN pip install --upgrade pip
-RUN pip install -r /code/requirements/dev.txt
+RUN pip install -r /code/requirements/base.txt
